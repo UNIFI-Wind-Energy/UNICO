@@ -1,6 +1,6 @@
-# UNIversity of Floarence Research COntroller (UNICO)
+# UNIversity of Florence Research COntroller (UNICO)
 
-Research controller for stall-regulated wind turbines developed by the University of Flotence (Italy). 
+Research controller for stall-regulated wind turbines developed by the University of Florence (Italy). 
 
 Contents of this repository: 
 
