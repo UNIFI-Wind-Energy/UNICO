@@ -1,0 +1,77 @@
+--------- BEAMDYN with OpenFAST INPUT FILE -------------------------------------------
+UNIFI 50kW Reference SWT primary input file.
+---------------------- SIMULATION CONTROL --------------------------------------
+     True     Echo             - Echo input data to "<RootName>.ech"? (flag)
+     True     QuasiStaticInit  - Use quasi-static pre-conditioning with centripetal accelerations in initialization? (flag) [dynamic solve only]
+        0     rhoinf           - Numerical damping parameter for generalized-alpha integrator
+        2     quadrature       - Quadrature method: 1=Gaussian; 2=Trapezoidal (switch)
+"DEFAULT"     refine           - Refinement factor for trapezoidal quadrature (-) [DEFAULT = 1; used only when quadrature=2]
+"DEFAULT"     n_fact           - Factorization frequency for the Jacobian in N-R iteration(-) [DEFAULT = 5]
+0.00005     DTBeam           - Time step size (s)
+"DEFAULT"     load_retries     - Number of factored load retries before quitting the simulation [DEFAULT = 20]
+"DEFAULT"     NRMax            - Max number of iterations in Newton-Raphson algorithm (-) [DEFAULT = 10]
+"DEFAULT"     stop_tol         - Tolerance for stopping criterion (-) [DEFAULT = 1E-5]
+"DEFAULT"     tngt_stf_fd      - Use finite differenced tangent stiffness matrix? (flag)
+"DEFAULT"     tngt_stf_comp    - Compare analytical finite differenced tangent stiffness matrix? (flag)
+"DEFAULT"     tngt_stf_pert    - Perturbation size for finite differencing (-) [DEFAULT = 1E-6]
+"DEFAULT"     tngt_stf_difftol - Maximum allowable relative difference between analytical and fd tangent stiffness (-); [DEFAULT = 0.1]
+     True     RotStates        - Orient states in the rotating frame during linearization? (flag) [used only when linearizing] 
+---------------------- GEOMETRY PARAMETER --------------------------------------
+        1     member_total    - Total number of members (-)
+       33     kp_total        - Total number of key points (-) [must be at least 3]
+ 1     33                     - Member number; Number of key points in this member
+    kp_xr         kp_yr           kp_zr     initial_twist
+    (m)            (m)            (m)          (deg)
+0.0000000    0.0000000   0.000000000   0.00000E+00
+-0.068698    -0.072668   0.113100000   0.00000E+00
+-0.070393    -0.083891   0.226100000   0.00000E+00
+-0.069124    -0.106441   0.339200000   0.00000E+00
+-0.076818    -0.144141   0.490000000   0.00000E+00
+-0.081575    -0.169860   0.565300000   0.00000E+00
+-0.085135    -0.195864   0.640700000   0.00000E+00
+-0.087686    -0.222011   0.716100000   0.00000E+00
+-0.087606    -0.243230   0.829200000   0.00000E+00
+-0.082175    -0.249384   0.866800000   0.00000E+00
+-0.077139    -0.255156   1.017600000   0.00000E+00
+-0.069448    -0.249737   1.356800000   0.00000E+00
+-0.061321    -0.239188   1.696000000   0.00000E+00
+-0.053464    -0.225754   2.035200000   0.00000E+00
+-0.046378    -0.211625   2.374400000   0.00000E+00
+-0.040179    -0.197823   2.713600000   0.00000E+00
+-0.035015    -0.185779   3.052800000   0.00000E+00
+-0.030511    -0.174283   3.392000000   0.00000E+00
+-0.026060    -0.164533   3.731200000   0.00000E+00
+-0.020718    -0.154964   4.070400000   0.00000E+00
+-0.018007    -0.146037   4.409600000   0.00000E+00
+-0.015682    -0.137959   4.748700000   0.00000E+00
+-0.013681    -0.130634   5.087900000   0.00000E+00
+-0.011953    -0.123999   5.427100000   0.00000E+00
+-0.010583    -0.119421   5.766300000   0.00000E+00
+-0.009675    -0.118932   6.105300000   0.00000E+00
+-0.008737    -0.117228   6.444700000   0.00000E+00
+-0.007729    -0.113438   6.783900000   0.00000E+00
+-0.006517    -0.104924   7.123100000   0.00000E+00
+-0.005222    -0.092526   7.236200000   0.00000E+00
+-0.003580    -0.070072   7.349300000   0.00000E+00
+-0.001727    -0.037527   7.462300000   0.00000E+00
+-0.001030    -0.024979   7.500000000   0.00000E+00
+---------------------- MESH PARAMETER ------------------------------------------
+          7   order_elem     - Order of interpolation (basis) function (-)
+---------------------- MATERIAL PARAMETER --------------------------------------
+"UNIFI_50kW_Reference_SWT_blade.dat"    BldFile - Name of file containing properties for blade (quoted string)
+---------------------- PITCH ACTUATOR PARAMETERS -------------------------------
+False         UsePitchAct - Whether a pitch actuator should be used (flag)
+        200   PitchJ      - Pitch actuator inertia (kg-m^2) [used only when UsePitchAct is true]
+      2E+07   PitchK      - Pitch actuator stiffness (kg-m^2/s^2) [used only when UsePitchAct is true]
+     500000   PitchC      - Pitch actuator damping (kg-m^2/s) [used only when UsePitchAct is true]
+---------------------- OUTPUTS -------------------------------------------------
+True          SumPrint       - Print summary data to "<RootName>.sum" (flag)
+"ES10.3E2"    OutFmt         - Format used for text tabular output, excluding the time channel.
+          9   NNodeOuts      - Number of nodes to output to file [0 - 9] (-)
+          1,          5,          9,          13,          17,          21,         25,        29,        32    OutNd          - Nodes whose values will be output  (-)
+          OutList            - The next line(s) contains a list of output parameters. See OutListParameters.xlsx for a listing of available output channels, (-)
+"RootFxr, RootFyr, RootFzr"
+"RootMxr, RootMyr, RootMzr"
+"TipTDxr, TipTDyr, TipTDzr"
+"TipRDxr, TipRDyr, TipRDzr"
+END of input file (the word "END" must appear in the first 3 columns of this last OutList line)
