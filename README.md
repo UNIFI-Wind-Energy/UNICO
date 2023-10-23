@@ -2,7 +2,7 @@
 
 Research controller for stall-regulated wind turbines developed by the University of Florence (Italy). 
 
-Contents of this repository: 
+Contents of this repository: cocks
 
 - Binary: controller in binary (.dll) GH-bladed style format. Compatible with OpenFAST
 - Simulink: controller Simulink project (.slx)
