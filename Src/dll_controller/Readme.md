@@ -1,13 +1,13 @@
+**Important Information**
+
 "discon.in" file contains the input data to the controller. 
 The UNICO controller is case sensitive to the name of this file.
-Do not change anything in the discon.in file.
-
-When used with OpenFAST, the file discon.in must be plase in the folder with 
+Do not change anything in the discon.in file. When used with OpenFAST, the file discon.in must be plase in the folder with 
 the .fst file to be located by the controller. 
 
+----------------------------------------------------------------------------------------------------------------------------
 
----------------------------------------------------------------------------
---------------------- .dll COMPILATION INSTRUCTIONS -----------------------
+**dll COMPILATION INSTRUCTIONS** 
 
 The .dll of the controller was compiled using the MATLAB simulink compiler. 
 The compilation was tested on MATLAB R2023A.
