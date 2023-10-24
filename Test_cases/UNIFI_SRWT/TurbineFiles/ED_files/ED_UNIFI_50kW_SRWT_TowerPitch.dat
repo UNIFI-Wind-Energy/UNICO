@@ -1,0 +1,66 @@
+------- ELASTODYN V1.00.* TOWER INPUT FILE -------------------------------------
+UNIFI 50kW Reference SWT.
+---------------------- TOWER PARAMETERS ----------------------------------------
+    23   NTwInpSt       - Number of input stations to specify tower geometry
+   0.5   TwrFADmp(1)    - Tower 1st fore-aft mode structural damping ratio (%)
+   0.5   TwrFADmp(2)    - Tower 2nd fore-aft mode structural damping ratio (%)
+   0.5   TwrSSDmp(1)    - Tower 1st side-to-side mode structural damping ratio (%)
+   0.5   TwrSSDmp(2)    - Tower 2nd side-to-side mode structural damping ratio (%)
+---------------------- TOWER ADJUSTMUNT FACTORS --------------------------------
+     1   FAStTunr(1)    - Tower fore-aft modal stiffness tuner, 1st mode (-)
+     1   FAStTunr(2)    - Tower fore-aft modal stiffness tuner, 2nd mode (-)
+     1   SSStTunr(1)    - Tower side-to-side stiffness tuner, 1st mode (-)
+     1   SSStTunr(2)    - Tower side-to-side stiffness tuner, 2nd mode (-)
+     1   AdjTwMa        - Factor to adjust tower mass density (-)
+     1   AdjFASt        - Factor to adjust tower fore-aft stiffness (-)
+     1   AdjSSSt        - Factor to adjust tower side-to-side stiffness (-)
+---------------------- DISTRIBUTED TOWER PROPERTIES ----------------------------
+     HtFract          TMassDen     TwFAStif      TwSSStif     TwGJStif   TwEAStif     TwFAIner     TwSSIner    TwFAcgOf     TwSScgOf
+      (-)              (kg/m)       (Nm^2)        (Nm^2)       (Nm^2)      (N)         (kg m)       (kg m)        (m)          (m)
+0.0000000000E+00    526.3751057  3.132774E+09   3.132774E+09     0.0       0.0           0.0          0.0         0.0          0.0
+1.1000000000E-01    522.4292654  3.062856E+09   3.062856E+09     0.0       0.0           0.0          0.0         0.0          0.0
+1.6500000000E-01    518.483425   2.993985E+09   2.993985E+09     0.0       0.0           0.0          0.0         0.0          0.0
+2.2000000000E-01    514.5375846  2.926155E+09   2.926155E+09     0.0       0.0           0.0          0.0         0.0          0.0
+2.2045454545E-01    387.0869406  2.214727E+09   2.214727E+09     0.0       0.0           0.0          0.0         0.0          0.0
+2.7500000000E-01    384.1275603  2.164321E+09   2.164321E+09     0.0       0.0           0.0          0.0         0.0          0.0
+3.3000000000E-01    381.16818    2.114685E+09   2.114685E+09     0.0       0.0           0.0          0.0         0.0          0.0
+3.8500000000E-01    378.2087997  2.065814E+09   2.065814E+09     0.0       0.0           0.0          0.0         0.0          0.0
+4.4000000000E-01    375.2494195  2.017702E+09   2.017702E+09     0.0       0.0           0.0          0.0         0.0          0.0
+4.9500000000E-01    372.2900392  1.970343E+09   1.970343E+09     0.0       0.0           0.0          0.0         0.0          0.0
+4.9545454545E-01    279.88339    1.488295E+09   1.488295E+09     0.0       0.0           0.0          0.0         0.0          0.0
+5.5000000000E-01    277.6638547  1.453169E+09   1.453169E+09     0.0       0.0           0.0          0.0         0.0          0.0
+6.0500000000E-01    275.4443195  1.418600E+09   1.418600E+09     0.0       0.0           0.0          0.0         0.0          0.0
+6.6000000000E-01    273.2247843  1.384583E+09   1.384583E+09     0.0       0.0           0.0          0.0         0.0          0.0
+7.1500000000E-01    268.7857139  1.318190E+09   1.318190E+09     0.0       0.0           0.0          0.0         0.0          0.0
+7.1590909091E-01    209.4008163  1.030325E+09   1.030325E+09     0.0       0.0           0.0          0.0         0.0          0.0
+7.7000000000E-01    205.948206   9.801973E+08   9.801973E+08     0.0       0.0           0.0          0.0         0.0          0.0
+8.2500000000E-01    188.6851543  7.537989E+08   7.537989E+08     0.0       0.0           0.0          0.0         0.0          0.0
+8.8000000000E-01    171.4221027  5.652578E+08   5.652578E+08     0.0       0.0           0.0          0.0         0.0          0.0
+9.3500000000E-01    154.1590511  4.111102E+08   4.111102E+08     0.0       0.0           0.0          0.0         0.0          0.0
+9.3636363636E-01    132.2842985  3.535595E+08   3.535595E+08     0.0       0.0           0.0          0.0         0.0          0.0
+9.9000000000E-01    117.4873971  2.476947E+08   2.476947E+08     0.0       0.0           0.0          0.0         0.0          0.0
+1.0000000000E+00    117.4873971  2.476947E+08   2.476947E+08     0.0       0.0           0.0          0.0         0.0          0.0
+---------------------- TOWER FORE-AFT MODE SHAPES ------------------------------
+0.8959      TwFAM1Sh(2) - Mode 1, coefficient of x^2 term
+0.4961      TwFAM1Sh(3) -       , coefficient of x^3 term
+-0.5821     TwFAM1Sh(4) -       , coefficient of x^4 term
+0.1754      TwFAM1Sh(5) -       , coefficient of x^5 term
+0.0148      TwFAM1Sh(6) -       , coefficient of x^6 term
+-73.2760    TwFAM2Sh(2) - Mode 2, coefficient of x^2 term
+-33.6642    TwFAM2Sh(3) -       , coefficient of x^3 term
+265.6355    TwFAM2Sh(4) -       , coefficient of x^4 term
+-220.5399   TwFAM2Sh(5) -       , coefficient of x^5 term
+62.8446     TwFAM2Sh(6) -       , coefficient of x^6 term
+ ---------------------- TOWER SIDE-TO-SIDE MODE SHAPES ------------------------
+ 0.8964     TwSSM1Sh(2) - Mode 1, coefficient of x^2 term
+ 0.4934     TwSSM1Sh(3) -       , coefficient of x^3 term
+ -0.5770    TwSSM1Sh(4) -       , coefficient of x^4 term
+ 0.1710     TwSSM1Sh(5) -       , coefficient of x^5 term
+ 0.0163     TwSSM1Sh(6) -       , coefficient of x^6 term
+-81.5824    TwSSM2Sh(2) - Mode 2, coefficient of x^2 term
+-40.9181    TwSSM2Sh(3) -       , coefficient of x^3 term
+303.6436    TwSSM2Sh(4) -       , coefficient of x^4 term
+-253.2419   TwSSM2Sh(5) -       , coefficient of x^5 term
+73.0988     TwSSM2Sh(6) -       , coefficient of x^6 term
+
+
