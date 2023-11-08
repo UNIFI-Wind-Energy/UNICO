@@ -1,7 +1,7 @@
 Contents: 
 - **UNICO_simulink.slx** :    Simulink project of the UNICO controller. This controller can be coupled to OpenFAST
 using the OpenFAST SFunction. An example is provided in "matlab-toolbox/runFAST.m"To run the example, download the
-OpenFAST v3.5.0 SFunction, that is available at: https://github.com/OpenFAST/openfast/releases/tag/v3.5.0
+OpenFAST v3.5.0 SFunction (files: FAST_SFunc.mexw64, OpenFAST-Simulink_x64.dll), that is available at: https://github.com/OpenFAST/openfast/releases/tag/v3.5.0
 						
 - **dll_controller** :	In this folder a dynamic library version (.dll) of the UNICO controller is stored. 
 The .dll can be used in wind turbine simulation tools that support Bladed-style control interfaces. It was
