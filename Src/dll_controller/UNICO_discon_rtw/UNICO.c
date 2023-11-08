@@ -7,9 +7,9 @@
  *
  * Code generation for model "UNICO".
  *
- * Model version              : 10.34
+ * Model version              : 10.37
  * Simulink Coder version : 9.9 (R2023a) 19-Nov-2022
- * C source code generated on : Tue Oct 17 08:43:04 2023
+ * C source code generated on : Wed Nov  8 09:23:49 2023
  *
  * Target selection: discon.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -1321,19 +1321,19 @@ static void UNICO_output(void)
   real_T rtb_GenTq;
   real_T rtb_Product1;
   real_T rtb_Product2;
-  real_T rtb_Product2_i;
-  real_T rtb_Product2_l;
+  real_T rtb_Product2_h;
+  real_T rtb_Product2_k;
   real_T rtb_SpeedErr;
   real_T rtb_Sum;
   real_T rtb_Sum2;
   real_T rtb_Sum3;
-  real_T rtb_Sum_h;
-  real_T rtb_Sum_p;
-  real_T rtb_Switch1_k;
-  real_T rtb_Switch_l;
+  real_T rtb_Sum_f;
+  real_T rtb_Sum_k;
+  real_T rtb_Switch1_a;
+  real_T rtb_Switch_h;
   real_T rtb_tau;
-  real_T rtb_tau_b;
-  real_T rtb_tau_m;
+  real_T rtb_tau_c;
+  real_T rtb_tau_p;
   real_T rtb_y;
   real_T xtmp;
   int32_T b_j;
@@ -1373,18 +1373,18 @@ static void UNICO_output(void)
    *  Gain: '<S9>/Gain'
    *  Inport: '<Root>/dWindSpeedFLPF'
    */
-  rtb_tau_b = 6.2831853071795862 * UNICO_U.dWindSpeedFLPF * 0.004;
+  rtb_tau_c = 6.2831853071795862 * UNICO_U.dWindSpeedFLPF * 0.004;
 
   /* Product: '<S18>/Product2' incorporates:
    *  Bias: '<S18>/Bias'
    */
-  rtb_Product2_i = 1.0 / (rtb_tau_b + 1.0) * rtb_tau_b;
+  rtb_Product2_h = 1.0 / (rtb_tau_c + 1.0) * rtb_tau_c;
 
   /* Sum: '<S17>/Sum' incorporates:
    *  Inport: '<Root>/Wind_Speed'
    *  UnitDelay: '<S17>/Unit Delay'
    */
-  rtb_Sum_p = UNICO_U.Wind_Speed + UNICO_DW.UnitDelay_DSTATE_p;
+  rtb_Sum_k = UNICO_U.Wind_Speed + UNICO_DW.UnitDelay_DSTATE_o;
 
   /* Sum: '<S17>/Sum1' incorporates:
    *  Bias: '<S18>/Bias1'
@@ -1392,25 +1392,25 @@ static void UNICO_output(void)
    *  Inport: '<Root>/Wind_Speed'
    *  Product: '<S17>/Product4'
    */
-  UNICO_B.Sum1_h = ((-2.0) * rtb_Product2_i + 1.0) * rtb_Sum_p +
+  UNICO_B.Sum1_o = ((-2.0) * rtb_Product2_h + 1.0) * rtb_Sum_k +
     UNICO_U.Wind_Speed;
 
   /* Gain: '<S19>/tau' incorporates:
    *  Gain: '<S9>/Gain1'
    *  Inport: '<Root>/dGenSpeedFLPF'
    */
-  rtb_tau_m = 6.2831853071795862 * UNICO_U.dGenSpeedFLPF * 0.004;
+  rtb_tau_p = 6.2831853071795862 * UNICO_U.dGenSpeedFLPF * 0.004;
 
   /* Product: '<S20>/Product2' incorporates:
    *  Bias: '<S20>/Bias'
    */
-  rtb_Product2_l = 1.0 / (rtb_tau_m + 1.0) * rtb_tau_m;
+  rtb_Product2_k = 1.0 / (rtb_tau_p + 1.0) * rtb_tau_p;
 
   /* Sum: '<S19>/Sum' incorporates:
    *  Inport: '<Root>/Generator_Speed'
    *  UnitDelay: '<S19>/Unit Delay'
    */
-  rtb_Sum_h = UNICO_U.Generator_Speed + UNICO_DW.UnitDelay_DSTATE_d;
+  rtb_Sum_f = UNICO_U.Generator_Speed + UNICO_DW.UnitDelay_DSTATE_c;
 
   /* Sum: '<S19>/Sum1' incorporates:
    *  Bias: '<S20>/Bias1'
@@ -1418,7 +1418,7 @@ static void UNICO_output(void)
    *  Inport: '<Root>/Generator_Speed'
    *  Product: '<S19>/Product4'
    */
-  UNICO_B.Sum1_d = ((-2.0) * rtb_Product2_l + 1.0) * rtb_Sum_h +
+  UNICO_B.Sum1_c = ((-2.0) * rtb_Product2_k + 1.0) * rtb_Sum_f +
     UNICO_U.Generator_Speed;
 
   /* Switch: '<S9>/Switch' incorporates:
@@ -1427,9 +1427,9 @@ static void UNICO_output(void)
    *  Product: '<S17>/Product1'
    */
   if (UNICO_U.dWindSpeedFSw != 0.0) {
-    rtb_Switch_l = rtb_Product2_i * rtb_Sum_p;
+    rtb_Switch_h = rtb_Product2_h * rtb_Sum_k;
   } else {
-    rtb_Switch_l = UNICO_U.Wind_Speed;
+    rtb_Switch_h = UNICO_U.Wind_Speed;
   }
 
   /* End of Switch: '<S9>/Switch' */
@@ -1440,9 +1440,9 @@ static void UNICO_output(void)
    *  Product: '<S19>/Product1'
    */
   if (UNICO_U.dGenSpeedFSw != 0.0) {
-    rtb_Switch1_k = rtb_Product2_l * rtb_Sum_h;
+    rtb_Switch1_a = rtb_Product2_k * rtb_Sum_f;
   } else {
-    rtb_Switch1_k = UNICO_U.Generator_Speed;
+    rtb_Switch1_a = UNICO_U.Generator_Speed;
   }
 
   /* End of Switch: '<S9>/Switch1' */
@@ -1896,7 +1896,7 @@ static void UNICO_output(void)
    *  SignalConversion generated from: '<S7>/CpInvSgn'
    *  SignalConversion generated from: '<S7>/TSRSgn'
    */
-  /* MATLAB Function 'UNICO CONTROLLER/Reference Speed Determination1/WT_Controller': '<S25>:1' */
+  /* MATLAB Function 'UNICO CONTROLLER/Reference Speed Determination/WT_Controller': '<S25>:1' */
   /* '<S25>:1:4' */
   /* '<S25>:1:5' */
   /* '<S25>:1:6' */
@@ -1913,12 +1913,12 @@ static void UNICO_output(void)
   /* '<S25>:1:17' */
   /* '<S25>:1:18' */
   /* '<S25>:1:23' */
-  if (rtb_Switch_l <= UNICO_U.dRtWSpd) {
+  if (rtb_Switch_h <= UNICO_U.dRtWSpd) {
     /* '<S25>:1:26' */
     if (UNICO_U.dRgn2Mode == 0.0) {
       /* '<S25>:1:27' */
       /* '<S25>:1:28' */
-      count = rtb_Switch_l * UNICO_U.dTSRopt / UNICO_U.dRotorRadius;
+      count = rtb_Switch_h * UNICO_U.dTSRopt / UNICO_U.dRotorRadius;
       if ((UNICO_U.dMinOMSpd >= count) || rtIsNaN(count)) {
         count = UNICO_U.dMinOMSpd;
       }
@@ -1942,7 +1942,7 @@ static void UNICO_output(void)
     /* '<S25>:1:42' */
     count = UNICO_U.dRtPwr * UNICO_U.dGenEff / (0.5 * UNICO_U.dRhoAir *
       3.1415926535897931 * (UNICO_U.dRotorRadius * UNICO_U.dRotorRadius) *
-      rt_powd_snf(rtb_Switch_l, 3.0));
+      rt_powd_snf(rtb_Switch_h, 3.0));
     if ((count <= 0.0) || rtIsNaN(count)) {
       count = 0.0;
     }
@@ -2038,15 +2038,15 @@ static void UNICO_output(void)
     } while (exitg2 == 0);
 
     /* '<S25>:1:44' */
-    rtb_GenSpeedRef = count_line * rtb_Switch_l / UNICO_U.dRotorRadius;
-  } else if (rtb_Switch_l < UNICO_U.dVLin) {
+    rtb_GenSpeedRef = count_line * rtb_Switch_h / UNICO_U.dRotorRadius;
+  } else if (rtb_Switch_h < UNICO_U.dVLin) {
     /* '<S25>:1:48' */
     /* '<S25>:1:49' */
     rtb_GenSpeedRef = UNICO_U.dRtGenSpd;
   } else {
     /* '<S25>:1:51' */
     /* '<S25>:1:52' */
-    count = (rtb_Switch_l - UNICO_U.dVLin) * UNICO_U.dMRgn3Lin +
+    count = (rtb_Switch_h - UNICO_U.dVLin) * UNICO_U.dMRgn3Lin +
       UNICO_U.dRtGenSpd;
     if ((count >= UNICO_U.dMinOMSpd) || rtIsNaN(UNICO_U.dMinOMSpd)) {
       rtb_GenSpeedRef = count;
@@ -2087,7 +2087,7 @@ static void UNICO_output(void)
   /* Sum: '<S10>/Sum' incorporates:
    *  Switch: '<S12>/Switch1'
    */
-  rtb_SpeedErr = count - rtb_Switch1_k;
+  rtb_SpeedErr = count - rtb_Switch1_a;
 
   /* Sum: '<S10>/Sum1' incorporates:
    *  Delay: '<S10>/Delay One Step1'
@@ -2134,7 +2134,10 @@ static void UNICO_output(void)
   /* MATLAB Function: '<S10>/Initialize integral term' incorporates:
    *  Delay: '<S10>/Delay One Step4'
    *  Inport: '<Root>/dCpMax'
+   *  Inport: '<Root>/dKSwitch'
+   *  Inport: '<Root>/dMinOMSpdSwitch'
    *  Inport: '<Root>/dOMSpdSwitch'
+   *  Inport: '<Root>/dRgn2K'
    *  Inport: '<Root>/dRgn2Mode'
    *  Inport: '<Root>/dRhoAir'
    *  Inport: '<Root>/dRotorRadius'
@@ -2146,39 +2149,61 @@ static void UNICO_output(void)
   /* '<S21>:1:5' */
   /* '<S21>:1:6' */
   /* '<S21>:1:7' */
-  /* '<S21>:1:8' */
   /* '<S21>:1:9' */
   /* '<S21>:1:10' */
+  /* '<S21>:1:11' */
   /* '<S21>:1:12' */
   /* '<S21>:1:13' */
+  /* '<S21>:1:14' */
+  /* '<S21>:1:15' */
+  /* '<S21>:1:17' */
   if (UNICO_U.dRgn2Mode == 1.0) {
-    /* '<S21>:1:15' */
-    if ((rtb_Switch1_k < UNICO_U.dOMSpdSwitch) && (rtb_Switch_l <=
+    /* '<S21>:1:20' */
+    if (UNICO_U.dKSwitch == 1.0) {
+      /* '<S21>:1:22' */
+      /* '<S21>:1:23' */
+      count = UNICO_U.dRgn2K;
+    } else {
+      /* '<S21>:1:25' */
+      count = 0.5 * UNICO_U.dRhoAir * 3.1415926535897931 * rt_powd_snf
+        (UNICO_U.dRotorRadius, 5.0) * UNICO_U.dCpMax / rt_powd_snf
+        (UNICO_U.dTSRopt, 3.0);
+    }
+
+    if ((rtb_Switch1_a < UNICO_U.dOMSpdSwitch) && (rtb_Switch_h <=
          UNICO_U.dRtWSpd)) {
-      /* '<S21>:1:17' */
-      /* '<S21>:1:19' */
-      UNICO_B.check = 2.0;
-    } else if ((rtb_Switch1_k < UNICO_U.dRtGenSpd) && (rtb_Switch_l <=
+      /* '<S21>:1:27' */
+      if (rtb_Switch1_a < UNICO_U.dMinOMSpdSwitch) {
+        /* '<S21>:1:29' */
+        /* '<S21>:1:32' */
+        UNICO_B.check = 0.0;
+        if (UNICO_DW.DelayOneStep4_DSTATE == 2.0) {
+          /* '<S21>:1:33' */
+          /* '<S21>:1:35' */
+          /* '<S21>:1:36' */
+          UNICO_B.PI_int = rtb_Switch1_a * rtb_Switch1_a * count - rtb_Product1;
+        }
+      } else {
+        /* '<S21>:1:45' */
+        UNICO_B.check = 2.0;
+      }
+    } else if ((rtb_Switch1_a < UNICO_U.dRtGenSpd) && (rtb_Switch_h <=
                 UNICO_U.dRtWSpd)) {
-      /* '<S21>:1:21' */
-      /* '<S21>:1:24' */
+      /* '<S21>:1:49' */
+      /* '<S21>:1:52' */
       UNICO_B.check = 1.0;
       if (UNICO_DW.DelayOneStep4_DSTATE == 2.0) {
-        /* '<S21>:1:26' */
-        /* '<S21>:1:28' */
-        /* '<S21>:1:29' */
-        /* '<S21>:1:30' */
-        UNICO_B.PI_int = 0.5 * UNICO_U.dRhoAir * 3.1415926535897931 *
-          rt_powd_snf(UNICO_U.dRotorRadius, 5.0) * UNICO_U.dCpMax / rt_powd_snf
-          (UNICO_U.dTSRopt, 3.0) * (rtb_Switch1_k * rtb_Switch1_k) -
-          rtb_Product1;
+        /* '<S21>:1:54' */
+        /* '<S21>:1:56' */
+        /* '<S21>:1:57' */
+        UNICO_B.PI_int = rtb_Switch1_a * rtb_Switch1_a * count - rtb_Product1;
       }
     } else {
-      /* '<S21>:1:48' */
+      /* '<S21>:1:75' */
       UNICO_B.check = 3.0;
     }
   } else {
-    /* '<S21>:1:55' */
+    /* '<S21>:1:82' */
     UNICO_B.check = 0.0;
   }
 
@@ -2217,6 +2242,8 @@ static void UNICO_output(void)
   /* MATLAB Function: '<S13>/Region 2 Switch Mode' incorporates:
    *  Inport: '<Root>/dCpMax'
    *  Inport: '<Root>/dKSwitch'
+   *  Inport: '<Root>/dMinOMSpd'
+   *  Inport: '<Root>/dMinOMSpdSwitch'
    *  Inport: '<Root>/dOMSpdSwitch'
    *  Inport: '<Root>/dRgn2K'
    *  Inport: '<Root>/dRgn2Mode'
@@ -2225,7 +2252,7 @@ static void UNICO_output(void)
    *  Inport: '<Root>/dRtGenSpd'
    *  Inport: '<Root>/dTSRopt'
    */
-  /* MATLAB Function 'UNICO CONTROLLER/Region 2 Switch /Region 2 Switch Mode': '<S28>:1' */
+  /* MATLAB Function 'UNICO CONTROLLER/Region Switch /Region 2 Switch Mode': '<S28>:1' */
   /* '<S28>:1:4' */
   /* '<S28>:1:5' */
   /* '<S28>:1:6' */
@@ -2236,39 +2263,56 @@ static void UNICO_output(void)
   /* '<S28>:1:11' */
   /* '<S28>:1:12' */
   /* '<S28>:1:13' */
+  /* '<S28>:1:14' */
+  /* '<S28>:1:15' */
   if (UNICO_U.dKSwitch == 1.0) {
-    /* '<S28>:1:20' */
-    /* '<S28>:1:21' */
+    /* '<S28>:1:22' */
+    /* '<S28>:1:23' */
     count = UNICO_U.dRgn2K;
   } else {
-    /* '<S28>:1:24' */
+    /* '<S28>:1:25' */
     count = 0.5 * UNICO_U.dRhoAir * 3.1415926535897931 * rt_powd_snf
       (UNICO_U.dRotorRadius, 5.0) * UNICO_U.dCpMax / rt_powd_snf(UNICO_U.dTSRopt,
       3.0);
   }
 
-  /* '<S28>:1:27' */
+  /* '<S28>:1:28' */
   count_line = UNICO_U.dOMSpdSwitch * UNICO_U.dOMSpdSwitch * count;
+
+  /* '<S28>:1:30' */
+  xtmp = UNICO_U.dMinOMSpdSwitch * UNICO_U.dMinOMSpdSwitch * count;
   if (UNICO_U.dRgn2Mode == 1.0) {
-    /* '<S28>:1:30' */
-    if ((rtb_Switch1_k < UNICO_U.dOMSpdSwitch) && (rtb_Switch_l <=
+    /* '<S28>:1:33' */
+    if ((rtb_Switch1_a < UNICO_U.dOMSpdSwitch) && (rtb_Switch_h <=
          UNICO_U.dRtWSpd)) {
-      /* '<S28>:1:31' */
-      /* '<S28>:1:32' */
-      rtb_GenTq = rtb_Switch1_k * rtb_Switch1_k * count;
-    } else if ((rtb_Switch1_k < UNICO_U.dRtGenSpd) && (rtb_Switch_l <=
+      /* '<S28>:1:36' */
+      /* '<S28>:1:38' */
+      rtb_GenTq = rtb_Switch1_a * rtb_Switch1_a * count;
+      if ((rtb_Switch1_a < UNICO_U.dMinOMSpdSwitch) && (rtb_Switch1_a >
+           UNICO_U.dMinOMSpd)) {
+        /* '<S28>:1:40' */
+        /* '<S28>:1:43' */
+        rtb_GenTq = (rtb_y - xtmp) / (UNICO_U.dMinOMSpd -
+          UNICO_U.dMinOMSpdSwitch) * (rtb_Switch1_a - UNICO_U.dMinOMSpdSwitch) +
+          xtmp;
+      } else if (rtb_Switch1_a < UNICO_U.dMinOMSpd) {
+        /* '<S28>:1:45' */
+        /* '<S28>:1:48' */
+        rtb_GenTq = rtb_y;
+      }
+    } else if ((rtb_Switch1_a < UNICO_U.dRtGenSpd) && (rtb_Switch_h <=
                 UNICO_U.dRtWSpd)) {
-      /* '<S28>:1:33' */
-      /* '<S28>:1:34' */
+      /* '<S28>:1:51' */
+      /* '<S28>:1:53' */
       rtb_GenTq = (rtb_y - count_line) / (UNICO_U.dRtGenSpd -
-        UNICO_U.dOMSpdSwitch) * (rtb_Switch1_k - UNICO_U.dOMSpdSwitch) +
+        UNICO_U.dOMSpdSwitch) * (rtb_Switch1_a - UNICO_U.dOMSpdSwitch) +
         count_line;
     } else {
-      /* '<S28>:1:36' */
+      /* '<S28>:1:56' */
       rtb_GenTq = rtb_y;
     }
   } else {
-    /* '<S28>:1:40' */
+    /* '<S28>:1:60' */
     rtb_GenTq = rtb_y;
   }
 
@@ -2351,6 +2395,7 @@ static void UNICO_output(void)
      *  Inport: '<Root>/dMaxRat'
      *  Inport: '<Root>/dMaxTq'
      *  Inport: '<Root>/dMinOMSpd'
+     *  Inport: '<Root>/dMinOMSpdSwitch'
      *  Inport: '<Root>/dMinTq'
      *  Inport: '<Root>/dOMSpdSwitch'
      *  Inport: '<Root>/dRefSpeedFLPF'
@@ -2395,12 +2440,13 @@ static void UNICO_output(void)
     /* '<S5>:1:25' */
     /* '<S5>:1:26' */
     /* '<S5>:1:27' */
+    /* '<S5>:1:28' */
     if (UNICO_U.Init == 0.0) {
-      /* '<S5>:1:32' */
       /* '<S5>:1:33' */
+      /* '<S5>:1:35' */
       count = UNICO_fileManager();
 
-      /* '<S5>:1:35' */
+      /* '<S5>:1:36' */
       UNICO_fileManager_m(count, &filestar, &autoflush);
       if (!(filestar == NULL)) {
         fprintf(filestar, "UNICO CONTROLLER SIMULATION INPUT \n");
@@ -2409,7 +2455,7 @@ static void UNICO_output(void)
         }
       }
 
-      /* '<S5>:1:36' */
+      /* '<S5>:1:37' */
       UNICO_fileManager_m(count, &filestar, &autoflush);
       if (!(filestar == NULL)) {
         fprintf(filestar, "Rotor radius [m]:                           %f \n",
@@ -2419,7 +2465,7 @@ static void UNICO_output(void)
         }
       }
 
-      /* '<S5>:1:37' */
+      /* '<S5>:1:38' */
       UNICO_fileManager_m(count, &filestar, &autoflush);
       if (!(filestar == NULL)) {
         fprintf(filestar, "Rated wind speed [m/s]:                     %f \n",
@@ -2429,7 +2475,7 @@ static void UNICO_output(void)
         }
       }
 
-      /* '<S5>:1:38' */
+      /* '<S5>:1:39' */
       UNICO_fileManager_m(count, &filestar, &autoflush);
       if (!(filestar == NULL)) {
         fprintf(filestar, "Rated Torque [Nm]:                          %f \n",
@@ -2439,7 +2485,7 @@ static void UNICO_output(void)
         }
       }
 
-      /* '<S5>:1:39' */
+      /* '<S5>:1:40' */
       UNICO_fileManager_m(count, &filestar, &autoflush);
       if (!(filestar == NULL)) {
         fprintf(filestar, "Rated power [W]:                            %f \n",
@@ -2449,7 +2495,7 @@ static void UNICO_output(void)
         }
       }
 
-      /* '<S5>:1:40' */
+      /* '<S5>:1:41' */
       UNICO_fileManager_m(count, &filestar, &autoflush);
       if (!(filestar == NULL)) {
         fprintf(filestar, "Rated generator speed [rad/s]:              %f \n",
@@ -2459,7 +2505,7 @@ static void UNICO_output(void)
         }
       }
 
-      /* '<S5>:1:41' */
+      /* '<S5>:1:42' */
       UNICO_fileManager_m(count, &filestar, &autoflush);
       if (!(filestar == NULL)) {
         fprintf(filestar, "Generator efficiency [-]:                   %f \n",
@@ -2469,7 +2515,7 @@ static void UNICO_output(void)
         }
       }
 
-      /* '<S5>:1:42' */
+      /* '<S5>:1:43' */
       UNICO_fileManager_m(count, &filestar, &autoflush);
       if (!(filestar == NULL)) {
         fprintf(filestar, "Minimum Torque [Nm]:                        %f \n",
@@ -2479,7 +2525,7 @@ static void UNICO_output(void)
         }
       }
 
-      /* '<S5>:1:43' */
+      /* '<S5>:1:44' */
       UNICO_fileManager_m(count, &filestar, &autoflush);
       if (!(filestar == NULL)) {
         fprintf(filestar, "Maximum generator torque [Nm]:              %f \n",
@@ -2489,7 +2535,7 @@ static void UNICO_output(void)
         }
       }
 
-      /* '<S5>:1:44' */
+      /* '<S5>:1:45' */
       UNICO_fileManager_m(count, &filestar, &autoflush);
       if (!(filestar == NULL)) {
         fprintf(filestar, "Maximum generator torque rate [Nm/s]:       %f \n",
@@ -2499,7 +2545,7 @@ static void UNICO_output(void)
         }
       }
 
-      /* '<S5>:1:45' */
+      /* '<S5>:1:46' */
       UNICO_fileManager_m(count, &filestar, &autoflush);
       if (!(filestar == NULL)) {
         fprintf(filestar, "Minumum generator speed [rad/s]:            %f \n",
@@ -2509,7 +2555,17 @@ static void UNICO_output(void)
         }
       }
 
-      /* '<S5>:1:46' */
+      /* '<S5>:1:47' */
+      UNICO_fileManager_m(count, &filestar, &autoflush);
+      if (!(filestar == NULL)) {
+        fprintf(filestar, "Switch between Rgn1.5 and 2 [rad/s]:        %f \n",
+                UNICO_U.dTSRopt);
+        if (autoflush) {
+          fflush(filestar);
+        }
+      }
+
+      /* '<S5>:1:48' */
       UNICO_fileManager_m(count, &filestar, &autoflush);
       if (!(filestar == NULL)) {
         fprintf(filestar, "Region 2 control [-]:                      %f \n",
@@ -2519,7 +2575,7 @@ static void UNICO_output(void)
         }
       }
 
-      /* '<S5>:1:47' */
+      /* '<S5>:1:49' */
       UNICO_fileManager_m(count, &filestar, &autoflush);
       if (!(filestar == NULL)) {
         fprintf(filestar, "Switch for user defined K [-]:              %f \n",
@@ -2529,7 +2585,7 @@ static void UNICO_output(void)
         }
       }
 
-      /* '<S5>:1:48' */
+      /* '<S5>:1:50' */
       UNICO_fileManager_m(count, &filestar, &autoflush);
       if (!(filestar == NULL)) {
         fprintf(filestar, "User defined K value [Nms^2/rad^2]:         %f \n",
@@ -2539,27 +2595,27 @@ static void UNICO_output(void)
         }
       }
 
-      /* '<S5>:1:49' */
+      /* '<S5>:1:51' */
       UNICO_fileManager_m(count, &filestar, &autoflush);
       if (!(filestar == NULL)) {
-        fprintf(filestar, "Switch between Rgn2 and 2 & 1/2 [rad/s]:    %f \n",
+        fprintf(filestar, "Switch between Rgn2 and 2.5 [rad/s]:        %f \n",
                 UNICO_U.dOMSpdSwitch);
         if (autoflush) {
           fflush(filestar);
         }
       }
 
-      /* '<S5>:1:50' */
+      /* '<S5>:1:52' */
       UNICO_fileManager_m(count, &filestar, &autoflush);
       if (!(filestar == NULL)) {
         fprintf(filestar, "Optimum TSR [-]:                            %f \n",
-                UNICO_U.dTSRopt);
+                UNICO_U.dMinOMSpdSwitch);
         if (autoflush) {
           fflush(filestar);
         }
       }
 
-      /* '<S5>:1:51' */
+      /* '<S5>:1:53' */
       UNICO_fileManager_m(count, &filestar, &autoflush);
       if (!(filestar == NULL)) {
         fprintf(filestar, "Maximum Cp value [-]:                       %f \n",
@@ -2569,7 +2625,7 @@ static void UNICO_output(void)
         }
       }
 
-      /* '<S5>:1:52' */
+      /* '<S5>:1:54' */
       UNICO_fileManager_m(count, &filestar, &autoflush);
       if (!(filestar == NULL)) {
         fprintf(filestar, "Region 3 control [-]:                       %f \n",
@@ -2579,7 +2635,7 @@ static void UNICO_output(void)
         }
       }
 
-      /* '<S5>:1:53' */
+      /* '<S5>:1:55' */
       UNICO_fileManager_m(count, &filestar, &autoflush);
       if (!(filestar == NULL)) {
         fprintf(filestar, "Angular coefficient linear method []:       %f \n",
@@ -2589,7 +2645,7 @@ static void UNICO_output(void)
         }
       }
 
-      /* '<S5>:1:54' */
+      /* '<S5>:1:56' */
       UNICO_fileManager_m(count, &filestar, &autoflush);
       if (!(filestar == NULL)) {
         fprintf(filestar, "Start reduction of ref velocity [m/s]:      %f \n",
@@ -2599,7 +2655,7 @@ static void UNICO_output(void)
         }
       }
 
-      /* '<S5>:1:55' */
+      /* '<S5>:1:57' */
       UNICO_fileManager_m(count, &filestar, &autoflush);
       if (!(filestar == NULL)) {
         fprintf(filestar, "PI Controller Kp [Nms/rad]:                 %f \n",
@@ -2609,7 +2665,7 @@ static void UNICO_output(void)
         }
       }
 
-      /* '<S5>:1:56' */
+      /* '<S5>:1:58' */
       UNICO_fileManager_m(count, &filestar, &autoflush);
       if (!(filestar == NULL)) {
         fprintf(filestar, "PI Controller Ki [Nm/rad]:                  %f \n",
@@ -2619,7 +2675,7 @@ static void UNICO_output(void)
         }
       }
 
-      /* '<S5>:1:57' */
+      /* '<S5>:1:59' */
       UNICO_fileManager_m(count, &filestar, &autoflush);
       if (!(filestar == NULL)) {
         fprintf(filestar, "Switch Wind speed filter [-]:               %f \n",
@@ -2629,7 +2685,7 @@ static void UNICO_output(void)
         }
       }
 
-      /* '<S5>:1:58' */
+      /* '<S5>:1:60' */
       UNICO_fileManager_m(count, &filestar, &autoflush);
       if (!(filestar == NULL)) {
         fprintf(filestar, "Wind speed lowpass frequency[Hz]:           %f \n",
@@ -2639,7 +2695,7 @@ static void UNICO_output(void)
         }
       }
 
-      /* '<S5>:1:59' */
+      /* '<S5>:1:61' */
       UNICO_fileManager_m(count, &filestar, &autoflush);
       if (!(filestar == NULL)) {
         fprintf(filestar, "Switch Generator speed filter [-]:          %f \n",
@@ -2649,7 +2705,7 @@ static void UNICO_output(void)
         }
       }
 
-      /* '<S5>:1:60' */
+      /* '<S5>:1:62' */
       UNICO_fileManager_m(count, &filestar, &autoflush);
       if (!(filestar == NULL)) {
         fprintf(filestar, "Generator speed lowpass frequency [Hz]:     %f \n",
@@ -2659,7 +2715,7 @@ static void UNICO_output(void)
         }
       }
 
-      /* '<S5>:1:61' */
+      /* '<S5>:1:63' */
       UNICO_fileManager_m(count, &filestar, &autoflush);
       if (!(filestar == NULL)) {
         fprintf(filestar, "Switch reference speed filter [-]:          %f \n",
@@ -2669,7 +2725,7 @@ static void UNICO_output(void)
         }
       }
 
-      /* '<S5>:1:62' */
+      /* '<S5>:1:64' */
       UNICO_fileManager_m(count, &filestar, &autoflush);
       if (!(filestar == NULL)) {
         fprintf(filestar, "Reference speed lowpass frequency [Hz]:     %f \n",
@@ -2679,7 +2735,7 @@ static void UNICO_output(void)
         }
       }
 
-      /* '<S5>:1:63' */
+      /* '<S5>:1:65' */
       UNICO_fileManager_m(count, &filestar, &autoflush);
       if (!(filestar == NULL)) {
         fprintf(filestar, "Air density [kg/m^3]:                       %f \n",
@@ -2689,7 +2745,7 @@ static void UNICO_output(void)
         }
       }
 
-      /* '<S5>:1:64' */
+      /* '<S5>:1:66' */
       UNICO_cfclose(count);
     }
 
@@ -2711,10 +2767,10 @@ static void UNICO_update(void)
 
   /* Update for Atomic SubSystem: '<S3>/Extract Signals1' */
   /* Update for UnitDelay: '<S17>/Unit Delay' */
-  UNICO_DW.UnitDelay_DSTATE_p = UNICO_B.Sum1_h;
+  UNICO_DW.UnitDelay_DSTATE_o = UNICO_B.Sum1_o;
 
   /* Update for UnitDelay: '<S19>/Unit Delay' */
-  UNICO_DW.UnitDelay_DSTATE_d = UNICO_B.Sum1_d;
+  UNICO_DW.UnitDelay_DSTATE_c = UNICO_B.Sum1_c;
 
   /* End of Update for SubSystem: '<S3>/Extract Signals1' */
 
@@ -2835,10 +2891,10 @@ static void UNICO_initialize(void)
 
     /* SystemInitialize for Atomic SubSystem: '<S3>/Extract Signals1' */
     /* InitializeConditions for UnitDelay: '<S17>/Unit Delay' */
-    UNICO_DW.UnitDelay_DSTATE_p = 0.0;
+    UNICO_DW.UnitDelay_DSTATE_o = 0.0;
 
     /* InitializeConditions for UnitDelay: '<S19>/Unit Delay' */
-    UNICO_DW.UnitDelay_DSTATE_d = 0.0;
+    UNICO_DW.UnitDelay_DSTATE_c = 0.0;
 
     /* End of SystemInitialize for SubSystem: '<S3>/Extract Signals1' */
 
@@ -3023,7 +3079,7 @@ RT_MODEL_UNICO_T *UNICO(void)
   /* Initialize Sizes */
   UNICO_M->Sizes.numContStates = (0);  /* Number of continuous states */
   UNICO_M->Sizes.numY = (26);          /* Number of model outputs */
-  UNICO_M->Sizes.numU = (54);          /* Number of model inputs */
+  UNICO_M->Sizes.numU = (55);          /* Number of model inputs */
   UNICO_M->Sizes.sysDirFeedThru = (1); /* The model is direct feedthrough */
   UNICO_M->Sizes.numSampTimes = (1);   /* Number of sample times */
   UNICO_M->Sizes.numBlocks = (113);    /* Number of blocks */

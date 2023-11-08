@@ -7,9 +7,9 @@
  *
  * Code generation for model "UNICO".
  *
- * Model version              : 10.34
+ * Model version              : 10.37
  * Simulink Coder version : 9.9 (R2023a) 19-Nov-2022
- * C source code generated on : Tue Oct 17 08:43:04 2023
+ * C source code generated on : Wed Nov  8 09:23:49 2023
  *
  * Target selection: discon.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -862,8 +862,8 @@ typedef struct {
   real_T Sum1;                         /* '<S26>/Sum1' */
   real_T PI_int;                       /* '<S10>/Initialize integral term' */
   real_T check;                        /* '<S10>/Initialize integral term' */
-  real_T Sum1_h;                       /* '<S17>/Sum1' */
-  real_T Sum1_d;                       /* '<S19>/Sum1' */
+  real_T Sum1_o;                       /* '<S17>/Sum1' */
+  real_T Sum1_c;                       /* '<S19>/Sum1' */
   real_T CpInvSgn[513];                /* '<S6>/Extract CP-TSR Table' */
   real_T TSRSgn[513];                  /* '<S6>/Extract CP-TSR Table' */
   real_T CpInvSgn_g[513];              /* '<S7>/CpInvSgn' */
@@ -879,8 +879,8 @@ typedef struct {
   real_T UnitDelay_DSTATE;             /* '<S26>/Unit Delay' */
   real_T DelayOneStep1_DSTATE;         /* '<S10>/Delay One Step1' */
   real_T DelayOneStep4_DSTATE;         /* '<S10>/Delay One Step4' */
-  real_T UnitDelay_DSTATE_p;           /* '<S17>/Unit Delay' */
-  real_T UnitDelay_DSTATE_d;           /* '<S19>/Unit Delay' */
+  real_T UnitDelay_DSTATE_o;           /* '<S17>/Unit Delay' */
+  real_T UnitDelay_DSTATE_c;           /* '<S19>/Unit Delay' */
   FILE* eml_openfiles[20];             /* '<S6>/Extract CP-TSR Table' */
   FILE* eml_openfiles_j[20];           /* '<S4>/Echo' */
   int32_T SFunction_DIMS2[2];          /* '<S6>/Extract CP-TSR Table' */
@@ -947,6 +947,7 @@ typedef struct {
   real_T dCpMax;                       /* '<Root>/dCpMax' */
   real_T dFPitch;                      /* '<Root>/dFPitch' */
   real_T Measured_Torque;              /* '<Root>/Measured_Torque' */
+  real_T dMinOMSpdSwitch;              /* '<Root>/dMinOMSpdSwitch' */
 } ExtU_UNICO_T;
 
 /* External outputs (root outports fed by signals with default storage) */
@@ -1140,8 +1141,8 @@ extern RT_MODEL_UNICO_T *const UNICO_M;
  * '<S9>'   : 'UNICO/UNICO CONTROLLER/Extract Signals1'
  * '<S10>'  : 'UNICO/UNICO CONTROLLER/PI Controller1'
  * '<S11>'  : 'UNICO/UNICO CONTROLLER/Rate limiter'
- * '<S12>'  : 'UNICO/UNICO CONTROLLER/Reference Speed Determination1'
- * '<S13>'  : 'UNICO/UNICO CONTROLLER/Region 2 Switch '
+ * '<S12>'  : 'UNICO/UNICO CONTROLLER/Reference Speed Determination'
+ * '<S13>'  : 'UNICO/UNICO CONTROLLER/Region Switch '
  * '<S14>'  : 'UNICO/UNICO CONTROLLER/Simulation dt'
  * '<S15>'  : 'UNICO/UNICO CONTROLLER/Extract Signals1/Discrete Varying Lowpass'
  * '<S16>'  : 'UNICO/UNICO CONTROLLER/Extract Signals1/Discrete Varying Lowpass1'
@@ -1152,10 +1153,10 @@ extern RT_MODEL_UNICO_T *const UNICO_M;
  * '<S21>'  : 'UNICO/UNICO CONTROLLER/PI Controller1/Initialize integral term'
  * '<S22>'  : 'UNICO/UNICO CONTROLLER/PI Controller1/Saturate  torque'
  * '<S23>'  : 'UNICO/UNICO CONTROLLER/PI Controller1/Saturate Integral Term'
- * '<S24>'  : 'UNICO/UNICO CONTROLLER/Reference Speed Determination1/Discrete Varying Lowpass1'
- * '<S25>'  : 'UNICO/UNICO CONTROLLER/Reference Speed Determination1/WT_Controller'
- * '<S26>'  : 'UNICO/UNICO CONTROLLER/Reference Speed Determination1/Discrete Varying Lowpass1/FOS'
- * '<S27>'  : 'UNICO/UNICO CONTROLLER/Reference Speed Determination1/Discrete Varying Lowpass1/FOS/Arithmetic'
- * '<S28>'  : 'UNICO/UNICO CONTROLLER/Region 2 Switch /Region 2 Switch Mode'
+ * '<S24>'  : 'UNICO/UNICO CONTROLLER/Reference Speed Determination/Discrete Varying Lowpass1'
+ * '<S25>'  : 'UNICO/UNICO CONTROLLER/Reference Speed Determination/WT_Controller'
+ * '<S26>'  : 'UNICO/UNICO CONTROLLER/Reference Speed Determination/Discrete Varying Lowpass1/FOS'
+ * '<S27>'  : 'UNICO/UNICO CONTROLLER/Reference Speed Determination/Discrete Varying Lowpass1/FOS/Arithmetic'
+ * '<S28>'  : 'UNICO/UNICO CONTROLLER/Region Switch /Region 2 Switch Mode'
  */
 #endif                                 /* RTW_HEADER_UNICO_h_ */
