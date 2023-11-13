@@ -86,27 +86,8 @@ for i =1:length(list_fst)
     simIn = Simulink.SimulationInput(SimulinkModel); %create simulink input file for sbatch
     job = batchsim(simIn,"TransferBaseWorkspaceVariables","on"); %launch batch simulation. The variables from the workspace are loaded into the sbatch function, as it requires the inputs
 
-
-    % Out         = sim(SimulinkModel, 'StopTime', num2str(simu.TMax));
-    % sigsOut     = get(Out,'sigsOut');   %internal control signals
 end
-%% Get OutData
 
-% SFuncOutStr = '.SFunc';
-%
-% % Try text first, then binary
-% [OutData,OutList] = ReadFASTtext([fast.FAST_directory,filesep,fast.FAST_InputFile(1:end-4),SFuncOutStr,'.out']);
-% if isempty(OutData)
-%     [OutData,OutList] = ReadFASTbinary([fast.FAST_directory,filesep,fast.FAST_InputFile(1:end-4),SFuncOutStr,'.outb']);
-% end
-%
-% % Dump data to structure
-% for i = 1:length(OutList)
-%     simout.(OutList{i}) = OutData(:,i);
-% end
-%
-% %% Plot
-% Pl_FastPlots(simout)
 
 
 
