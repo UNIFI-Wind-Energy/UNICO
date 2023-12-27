@@ -7,27 +7,11 @@
 %endfunction
 %function ChartDataMap(block, system) void
   %createrecord ChartDataElements {\
-    NumChartData   2 \
+    NumChartData   0 \
     ChartDataDefaults {\
       RecordType   "ChartData"\
       Dimensions   []\
       IsTestPoint  0\
-    }\
-    ChartData {\
-      Name         "eml_openfiles"\
-      Description  "EmlPersistent"\
-      SFName       ""\
-      Path         ""\
-      SrcLocation  "C:\Program Files\MATLAB\R2023a\toolbox\eml\eml\+coder\+internal\fileManager.m:8331-8344"\
-      Dimensions   [20]\
-    }\
-    ChartData {\
-      Name         "eml_autoflush"\
-      Description  "EmlPersistent"\
-      SFName       ""\
-      Path         ""\
-      SrcLocation  "C:\Program Files\MATLAB\R2023a\toolbox\eml\eml\+coder\+internal\fileManager.m:8345-8358"\
-      Dimensions   [20]\
     }\
   }
   %return ChartDataElements
