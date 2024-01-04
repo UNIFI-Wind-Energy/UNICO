@@ -67,5 +67,7 @@ False         SumPrint     - Print summary data to <RootName>.IfW.sum (flag)
 "Wind1VelX"               X-direction wind velocity at point WindList(1)
 "Wind1VelY"               Y-direction wind velocity at point WindList(1)
 "Wind1VelZ"               Z-direction wind velocity at point WindList(1)
+"WindHubVelXY"
+"WindHubAngXY"
 END of input file (the word "END" must appear in the first 3 columns of this last OutList line)
 ---------------------------------------------------------------------------------------
