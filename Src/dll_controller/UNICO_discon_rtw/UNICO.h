@@ -7,9 +7,9 @@
  *
  * Code generation for model "UNICO".
  *
- * Model version              : 10.55
+ * Model version              : 10.58
  * Simulink Coder version : 9.9 (R2023a) 19-Nov-2022
- * C source code generated on : Wed Dec 27 09:30:55 2023
+ * C source code generated on : Tue Jan  9 12:19:13 2024
  *
  * Target selection: discon.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -862,8 +862,8 @@ typedef struct {
   real_T Sum1;                         /* '<S27>/Sum1' */
   real_T check;                        /* '<S10>/Initialize integral term' */
   real_T PI_int;                       /* '<S10>/Initialize integral term' */
-  real_T Sum1_o;                       /* '<S17>/Sum1' */
-  real_T Sum1_i;                       /* '<S19>/Sum1' */
+  real_T Sum1_h;                       /* '<S17>/Sum1' */
+  real_T Sum1_b;                       /* '<S19>/Sum1' */
   real_T CpInvSgn[513];                /* '<S6>/Extract CP-TSR Table' */
   real_T TSRSgn[513];                  /* '<S6>/Extract CP-TSR Table' */
   real_T CpInvSgn_g[513];              /* '<S7>/CpInvSgn' */
@@ -879,8 +879,8 @@ typedef struct {
   real_T DelayOneStep2_DSTATE;         /* '<S14>/Delay One Step2' */
   real_T UnitDelay_DSTATE;             /* '<S27>/Unit Delay' */
   real_T DelayOneStep1_DSTATE;         /* '<S10>/Delay One Step1' */
-  real_T UnitDelay_DSTATE_e;           /* '<S17>/Unit Delay' */
-  real_T UnitDelay_DSTATE_o;           /* '<S19>/Unit Delay' */
+  real_T UnitDelay_DSTATE_o;           /* '<S17>/Unit Delay' */
+  real_T UnitDelay_DSTATE_b;           /* '<S19>/Unit Delay' */
   FILE* eml_openfiles[20];             /* '<S6>/Extract CP-TSR Table' */
   FILE* eml_openfiles_d[20];           /* '<S4>/Echo1' */
   int32_T SFunction_DIMS2[2];          /* '<S6>/Extract CP-TSR Table' */

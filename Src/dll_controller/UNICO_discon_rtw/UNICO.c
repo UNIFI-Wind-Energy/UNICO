@@ -7,9 +7,9 @@
  *
  * Code generation for model "UNICO".
  *
- * Model version              : 10.55
+ * Model version              : 10.58
  * Simulink Coder version : 9.9 (R2023a) 19-Nov-2022
- * C source code generated on : Wed Dec 27 09:30:55 2023
+ * C source code generated on : Tue Jan  9 12:19:13 2024
  *
  * Target selection: discon.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -24,9 +24,9 @@
 #include "UNICO_types.h"
 #include <stddef.h>
 #include <string.h>
-#include "rt_nonfinite.h"
-#include "UNICO_private.h"
 #include <math.h>
+#include "UNICO_private.h"
+#include "rt_nonfinite.h"
 #include <stdlib.h>
 
 /* Block signals (default storage) */
@@ -1315,27 +1315,28 @@ static void UNICO_output(void)
   creal_T x;
   real_T TSR[100];
   real_T pitch[100];
+  real_T Tgmin;
   real_T count;
   real_T count_line;
   real_T rtb_GenSpeedRef;
   real_T rtb_GenTq;
   real_T rtb_Product1;
   real_T rtb_Product2;
-  real_T rtb_Product2_a;
-  real_T rtb_Product2_b;
+  real_T rtb_Product2_c;
+  real_T rtb_Product2_p;
   real_T rtb_SpeedErr;
   real_T rtb_Sum;
   real_T rtb_Sum2;
   real_T rtb_Sum3;
-  real_T rtb_Sum_e;
-  real_T rtb_Sum_k;
-  real_T rtb_Switch1_o;
-  real_T rtb_Switch_g;
+  real_T rtb_Sum_f;
+  real_T rtb_Sum_g;
+  real_T rtb_Switch1_h;
+  real_T rtb_Switch_p;
   real_T rtb_ki;
   real_T rtb_kp;
   real_T rtb_tau;
-  real_T rtb_tau_h;
-  real_T rtb_tau_j;
+  real_T rtb_tau_f;
+  real_T rtb_tau_o;
   real_T rtb_y;
   real_T xtmp;
   int32_T b_j;
@@ -1375,18 +1376,18 @@ static void UNICO_output(void)
    *  Gain: '<S9>/Gain'
    *  Inport: '<Root>/dWindSpeedFLPF'
    */
-  rtb_tau_j = 6.2831853071795862 * UNICO_U.dWindSpeedFLPF * 0.004;
+  rtb_tau_o = 6.2831853071795862 * UNICO_U.dWindSpeedFLPF * 0.001;
 
   /* Product: '<S18>/Product2' incorporates:
    *  Bias: '<S18>/Bias'
    */
-  rtb_Product2_b = 1.0 / (rtb_tau_j + 1.0) * rtb_tau_j;
+  rtb_Product2_c = 1.0 / (rtb_tau_o + 1.0) * rtb_tau_o;
 
   /* Sum: '<S17>/Sum' incorporates:
    *  Inport: '<Root>/Wind_Speed'
    *  UnitDelay: '<S17>/Unit Delay'
    */
-  rtb_Sum_k = UNICO_U.Wind_Speed + UNICO_DW.UnitDelay_DSTATE_e;
+  rtb_Sum_f = UNICO_U.Wind_Speed + UNICO_DW.UnitDelay_DSTATE_o;
 
   /* Sum: '<S17>/Sum1' incorporates:
    *  Bias: '<S18>/Bias1'
@@ -1394,25 +1395,25 @@ static void UNICO_output(void)
    *  Inport: '<Root>/Wind_Speed'
    *  Product: '<S17>/Product4'
    */
-  UNICO_B.Sum1_o = ((-2.0) * rtb_Product2_b + 1.0) * rtb_Sum_k +
+  UNICO_B.Sum1_h = ((-2.0) * rtb_Product2_c + 1.0) * rtb_Sum_f +
     UNICO_U.Wind_Speed;
 
   /* Gain: '<S19>/tau' incorporates:
    *  Gain: '<S9>/Gain1'
    *  Inport: '<Root>/dGenSpeedFLPF'
    */
-  rtb_tau_h = 6.2831853071795862 * UNICO_U.dGenSpeedFLPF * 0.004;
+  rtb_tau_f = 6.2831853071795862 * UNICO_U.dGenSpeedFLPF * 0.001;
 
   /* Product: '<S20>/Product2' incorporates:
    *  Bias: '<S20>/Bias'
    */
-  rtb_Product2_a = 1.0 / (rtb_tau_h + 1.0) * rtb_tau_h;
+  rtb_Product2_p = 1.0 / (rtb_tau_f + 1.0) * rtb_tau_f;
 
   /* Sum: '<S19>/Sum' incorporates:
    *  Inport: '<Root>/Generator_Speed'
    *  UnitDelay: '<S19>/Unit Delay'
    */
-  rtb_Sum_e = UNICO_U.Generator_Speed + UNICO_DW.UnitDelay_DSTATE_o;
+  rtb_Sum_g = UNICO_U.Generator_Speed + UNICO_DW.UnitDelay_DSTATE_b;
 
   /* Sum: '<S19>/Sum1' incorporates:
    *  Bias: '<S20>/Bias1'
@@ -1420,7 +1421,7 @@ static void UNICO_output(void)
    *  Inport: '<Root>/Generator_Speed'
    *  Product: '<S19>/Product4'
    */
-  UNICO_B.Sum1_i = ((-2.0) * rtb_Product2_a + 1.0) * rtb_Sum_e +
+  UNICO_B.Sum1_b = ((-2.0) * rtb_Product2_p + 1.0) * rtb_Sum_g +
     UNICO_U.Generator_Speed;
 
   /* Switch: '<S9>/Switch' incorporates:
@@ -1429,9 +1430,9 @@ static void UNICO_output(void)
    *  Product: '<S17>/Product1'
    */
   if (UNICO_U.dWindSpeedFSw != 0.0) {
-    rtb_Switch_g = rtb_Product2_b * rtb_Sum_k;
+    rtb_Switch_p = rtb_Product2_c * rtb_Sum_f;
   } else {
-    rtb_Switch_g = UNICO_U.Wind_Speed;
+    rtb_Switch_p = UNICO_U.Wind_Speed;
   }
 
   /* End of Switch: '<S9>/Switch' */
@@ -1442,9 +1443,9 @@ static void UNICO_output(void)
    *  Product: '<S19>/Product1'
    */
   if (UNICO_U.dGenSpeedFSw != 0.0) {
-    rtb_Switch1_o = rtb_Product2_a * rtb_Sum_e;
+    rtb_Switch1_h = rtb_Product2_p * rtb_Sum_g;
   } else {
-    rtb_Switch1_o = UNICO_U.Generator_Speed;
+    rtb_Switch1_h = UNICO_U.Generator_Speed;
   }
 
   /* End of Switch: '<S9>/Switch1' */
@@ -1915,12 +1916,12 @@ static void UNICO_output(void)
   /* '<S26>:1:17' */
   /* '<S26>:1:18' */
   /* '<S26>:1:23' */
-  if (rtb_Switch_g <= UNICO_U.dRtWSpd) {
+  if (rtb_Switch_p <= UNICO_U.dRtWSpd) {
     /* '<S26>:1:26' */
     if (UNICO_U.dRgn2Mode == 0.0) {
       /* '<S26>:1:27' */
       /* '<S26>:1:28' */
-      count = rtb_Switch_g * UNICO_U.dTSRopt / UNICO_U.dRotorRadius;
+      count = rtb_Switch_p * UNICO_U.dTSRopt / UNICO_U.dRotorRadius;
       if ((UNICO_U.dMinOMSpd >= count) || rtIsNaN(count)) {
         count = UNICO_U.dMinOMSpd;
       }
@@ -1930,21 +1931,22 @@ static void UNICO_output(void)
       } else {
         rtb_GenSpeedRef = UNICO_U.dRtGenSpd;
       }
-
+    } else if (fabs(UNICO_U.dRtGenSpd - rtb_Switch1_h) < fabs(UNICO_U.dMinOMSpd
+                - rtb_Switch1_h)) {
+      /* '<S26>:1:31' */
       /* '<S26>:1:32' */
-    } else if ((UNICO_U.dRtGenSpd >= UNICO_U.dMinOMSpd) || rtIsNaN
-               (UNICO_U.dMinOMSpd)) {
       rtb_GenSpeedRef = UNICO_U.dRtGenSpd;
     } else {
+      /* '<S26>:1:34' */
       rtb_GenSpeedRef = UNICO_U.dMinOMSpd;
     }
   } else if (UNICO_U.dRgn3Mode == 0.0) {
-    /* '<S26>:1:39' */
-    /* '<S26>:1:41' */
-    /* '<S26>:1:42' */
+    /* '<S26>:1:44' */
+    /* '<S26>:1:46' */
+    /* '<S26>:1:47' */
     count = UNICO_U.dRtPwr * UNICO_U.dGenEff / (0.5 * UNICO_U.dRhoAir *
       3.1415926535897931 * (UNICO_U.dRotorRadius * UNICO_U.dRotorRadius) *
-      rt_powd_snf(rtb_Switch_g, 3.0));
+      rt_powd_snf(rtb_Switch_p, 3.0));
     if ((count <= 0.0) || rtIsNaN(count)) {
       count = 0.0;
     }
@@ -1953,7 +1955,7 @@ static void UNICO_output(void)
       count = UNICO_U.dCpMax;
     }
 
-    /* '<S26>:1:43' */
+    /* '<S26>:1:48' */
     mid_i = UNICO_DW.CpInvSgn_DIMS1[0];
     loop_ub = UNICO_DW.CpInvSgn_DIMS1[0];
     if (loop_ub - 1 >= 0) {
@@ -2039,16 +2041,16 @@ static void UNICO_output(void)
       }
     } while (exitg2 == 0);
 
-    /* '<S26>:1:44' */
-    rtb_GenSpeedRef = count_line * rtb_Switch_g / UNICO_U.dRotorRadius;
-  } else if (rtb_Switch_g < UNICO_U.dVLin) {
-    /* '<S26>:1:48' */
     /* '<S26>:1:49' */
+    rtb_GenSpeedRef = count_line * rtb_Switch_p / UNICO_U.dRotorRadius;
+  } else if (rtb_Switch_p < UNICO_U.dVLin) {
+    /* '<S26>:1:53' */
+    /* '<S26>:1:54' */
     rtb_GenSpeedRef = UNICO_U.dRtGenSpd;
   } else {
-    /* '<S26>:1:51' */
-    /* '<S26>:1:52' */
-    count = (rtb_Switch_g - UNICO_U.dVLin) * UNICO_U.dMRgn3Lin +
+    /* '<S26>:1:56' */
+    /* '<S26>:1:57' */
+    count = (rtb_Switch_p - UNICO_U.dVLin) * UNICO_U.dMRgn3Lin +
       UNICO_U.dRtGenSpd;
     if ((count >= UNICO_U.dMinOMSpd) || rtIsNaN(UNICO_U.dMinOMSpd)) {
       rtb_GenSpeedRef = count;
@@ -2063,8 +2065,8 @@ static void UNICO_output(void)
    *  Gain: '<S12>/Gain1'
    *  Inport: '<Root>/dRefSpeedFLPF'
    */
-  /* '<S26>:1:58' */
-  rtb_tau = 6.2831853071795862 * UNICO_U.dRefSpeedFLPF * 0.004;
+  /* '<S26>:1:63' */
+  rtb_tau = 6.2831853071795862 * UNICO_U.dRefSpeedFLPF * 0.001;
 
   /* Product: '<S28>/Product2' incorporates:
    *  Bias: '<S28>/Bias'
@@ -2089,7 +2091,7 @@ static void UNICO_output(void)
   /* Sum: '<S10>/Sum' incorporates:
    *  Switch: '<S12>/Switch1'
    */
-  rtb_SpeedErr = count - rtb_Switch1_o;
+  rtb_SpeedErr = count - rtb_Switch1_h;
 
   /* MATLAB Function: '<S10>/Gain scheduling' incorporates:
    *  Inport: '<Root>/dKiAr'
@@ -2108,22 +2110,22 @@ static void UNICO_output(void)
   /* '<S21>:1:7' */
   if (UNICO_U.dRgn2Mode == 0.0) {
     /* '<S21>:1:11' */
-    if ((rtb_Switch_g < UNICO_U.dRtWSpd) && (rtb_Switch1_o < UNICO_U.dRtGenSpd))
+    if ((rtb_Switch_p < UNICO_U.dRtWSpd) && (rtb_Switch1_h < UNICO_U.dRtGenSpd))
     {
       /* '<S21>:1:13' */
-      if (rtb_Switch1_o <= UNICO_U.dOMSpdSwitch) {
+      if (rtb_Switch1_h <= UNICO_U.dOMSpdSwitch) {
         /* '<S21>:1:16' */
         /* '<S21>:1:17' */
         rtb_kp = UNICO_U.dKpBr;
 
         /* '<S21>:1:18' */
         rtb_ki = UNICO_U.dKiBr;
-      } else if ((rtb_Switch1_o > UNICO_U.dOMSpdSwitch) && (rtb_Switch1_o <
+      } else if ((rtb_Switch1_h > UNICO_U.dOMSpdSwitch) && (rtb_Switch1_h <
                   UNICO_U.dRtGenSpd)) {
         /* '<S21>:1:20' */
         /* '<S21>:1:23' */
         count = UNICO_U.dRtGenSpd - UNICO_U.dOMSpdSwitch;
-        count_line = rtb_Switch1_o - UNICO_U.dOMSpdSwitch;
+        count_line = rtb_Switch1_h - UNICO_U.dOMSpdSwitch;
         rtb_kp = (UNICO_U.dKpAr - UNICO_U.dKpBr) / count * count_line +
           UNICO_U.dKpBr;
 
@@ -2231,10 +2233,10 @@ static void UNICO_output(void)
         (UNICO_U.dTSRopt, 3.0);
     }
 
-    if ((rtb_Switch1_o < UNICO_U.dOMSpdSwitch) && (rtb_Switch_g <=
+    if ((rtb_Switch1_h < UNICO_U.dOMSpdSwitch) && (rtb_Switch_p <=
          UNICO_U.dRtWSpd)) {
       /* '<S22>:1:27' */
-      if (rtb_Switch1_o < UNICO_U.dMinOMSpdSwitch) {
+      if (rtb_Switch1_h < UNICO_U.dMinOMSpdSwitch) {
         /* '<S22>:1:29' */
         /* '<S22>:1:32' */
         UNICO_B.check = 0.0;
@@ -2242,13 +2244,13 @@ static void UNICO_output(void)
           /* '<S22>:1:33' */
           /* '<S22>:1:35' */
           /* '<S22>:1:36' */
-          UNICO_B.PI_int = rtb_Switch1_o * rtb_Switch1_o * count - rtb_Product1;
+          UNICO_B.PI_int = rtb_Switch1_h * rtb_Switch1_h * count - rtb_Product1;
         }
       } else {
         /* '<S22>:1:45' */
         UNICO_B.check = 2.0;
       }
-    } else if ((rtb_Switch1_o < UNICO_U.dRtGenSpd) && (rtb_Switch_g <=
+    } else if ((rtb_Switch1_h < UNICO_U.dRtGenSpd) && (rtb_Switch_p <=
                 UNICO_U.dRtWSpd)) {
       /* '<S22>:1:49' */
       /* '<S22>:1:52' */
@@ -2257,7 +2259,7 @@ static void UNICO_output(void)
         /* '<S22>:1:54' */
         /* '<S22>:1:56' */
         /* '<S22>:1:57' */
-        UNICO_B.PI_int = rtb_Switch1_o * rtb_Switch1_o * count - rtb_Product1;
+        UNICO_B.PI_int = rtb_Switch1_h * rtb_Switch1_h * count - rtb_Product1;
       }
     } else {
       /* '<S22>:1:75' */
@@ -2342,38 +2344,43 @@ static void UNICO_output(void)
 
   /* '<S29>:1:30' */
   xtmp = UNICO_U.dMinOMSpdSwitch * UNICO_U.dMinOMSpdSwitch * count;
+
+  /* '<S29>:1:31' */
+  Tgmin = UNICO_U.dMinOMSpd * UNICO_U.dMinOMSpd * count;
   if (UNICO_U.dRgn2Mode == 1.0) {
-    /* '<S29>:1:33' */
-    if ((rtb_Switch1_o < UNICO_U.dOMSpdSwitch) && (rtb_Switch_g <=
+    /* '<S29>:1:34' */
+    if ((rtb_Switch1_h < UNICO_U.dOMSpdSwitch) && (rtb_Switch_p <=
          UNICO_U.dRtWSpd)) {
-      /* '<S29>:1:36' */
-      /* '<S29>:1:38' */
-      rtb_GenTq = rtb_Switch1_o * rtb_Switch1_o * count;
-      if ((rtb_Switch1_o < UNICO_U.dMinOMSpdSwitch) && (rtb_Switch1_o >
-           UNICO_U.dMinOMSpd)) {
+      /* '<S29>:1:37' */
+      /* '<S29>:1:39' */
+      rtb_GenTq = rtb_Switch1_h * rtb_Switch1_h * count;
+      if (rtb_Switch1_h < UNICO_U.dMinOMSpdSwitch) {
         /* '<S29>:1:40' */
-        /* '<S29>:1:43' */
-        rtb_GenTq = (rtb_y - xtmp) / (UNICO_U.dMinOMSpd -
-          UNICO_U.dMinOMSpdSwitch) * (rtb_Switch1_o - UNICO_U.dMinOMSpdSwitch) +
-          xtmp;
-      } else if (rtb_Switch1_o < UNICO_U.dMinOMSpd) {
-        /* '<S29>:1:45' */
-        /* '<S29>:1:48' */
-        rtb_GenTq = rtb_y;
+        if ((rtb_y < xtmp) && (rtb_y > Tgmin)) {
+          /* '<S29>:1:41' */
+          /* '<S29>:1:45' */
+          rtb_GenTq = (rtb_y - xtmp) / (UNICO_U.dMinOMSpd -
+            UNICO_U.dMinOMSpdSwitch) * (rtb_Switch1_h - UNICO_U.dMinOMSpdSwitch)
+            + xtmp;
+        } else if (rtb_y < Tgmin) {
+          /* '<S29>:1:48' */
+          /* '<S29>:1:52' */
+          rtb_GenTq = rtb_y;
+        }
       }
-    } else if ((rtb_Switch1_o < UNICO_U.dRtGenSpd) && (rtb_Switch_g <=
+    } else if ((rtb_Switch1_h < UNICO_U.dRtGenSpd) && (rtb_Switch_p <=
                 UNICO_U.dRtWSpd)) {
-      /* '<S29>:1:51' */
-      /* '<S29>:1:53' */
+      /* '<S29>:1:71' */
+      /* '<S29>:1:73' */
       rtb_GenTq = (rtb_y - count_line) / (UNICO_U.dRtGenSpd -
-        UNICO_U.dOMSpdSwitch) * (rtb_Switch1_o - UNICO_U.dOMSpdSwitch) +
+        UNICO_U.dOMSpdSwitch) * (rtb_Switch1_h - UNICO_U.dOMSpdSwitch) +
         count_line;
     } else {
-      /* '<S29>:1:56' */
+      /* '<S29>:1:76' */
       rtb_GenTq = rtb_y;
     }
   } else {
-    /* '<S29>:1:60' */
+    /* '<S29>:1:80' */
     rtb_GenTq = rtb_y;
   }
 
@@ -2850,10 +2857,10 @@ static void UNICO_update(void)
 
   /* Update for Atomic SubSystem: '<S3>/Extract Signals1' */
   /* Update for UnitDelay: '<S17>/Unit Delay' */
-  UNICO_DW.UnitDelay_DSTATE_e = UNICO_B.Sum1_o;
+  UNICO_DW.UnitDelay_DSTATE_o = UNICO_B.Sum1_h;
 
   /* Update for UnitDelay: '<S19>/Unit Delay' */
-  UNICO_DW.UnitDelay_DSTATE_o = UNICO_B.Sum1_i;
+  UNICO_DW.UnitDelay_DSTATE_b = UNICO_B.Sum1_b;
 
   /* End of Update for SubSystem: '<S3>/Extract Signals1' */
 
@@ -2974,10 +2981,10 @@ static void UNICO_initialize(void)
 
     /* SystemInitialize for Atomic SubSystem: '<S3>/Extract Signals1' */
     /* InitializeConditions for UnitDelay: '<S17>/Unit Delay' */
-    UNICO_DW.UnitDelay_DSTATE_e = 0.0;
+    UNICO_DW.UnitDelay_DSTATE_o = 0.0;
 
     /* InitializeConditions for UnitDelay: '<S19>/Unit Delay' */
-    UNICO_DW.UnitDelay_DSTATE_o = 0.0;
+    UNICO_DW.UnitDelay_DSTATE_b = 0.0;
 
     /* End of SystemInitialize for SubSystem: '<S3>/Extract Signals1' */
 
@@ -3094,7 +3101,7 @@ RT_MODEL_UNICO_T *UNICO(void)
     UNICO_M->Timing.offsetTimes = (&UNICO_M->Timing.offsetTimesArray[0]);
 
     /* task periods */
-    UNICO_M->Timing.sampleTimes[0] = (0.008);
+    UNICO_M->Timing.sampleTimes[0] = (0.002);
 
     /* task offsets */
     UNICO_M->Timing.offsetTimes[0] = (0.0);
@@ -3109,7 +3116,7 @@ RT_MODEL_UNICO_T *UNICO(void)
   }
 
   rtmSetTFinal(UNICO_M, -1);
-  UNICO_M->Timing.stepSize0 = 0.008;
+  UNICO_M->Timing.stepSize0 = 0.002;
 
   /* Setup for data logging */
   {
@@ -3135,8 +3142,8 @@ RT_MODEL_UNICO_T *UNICO(void)
   }
 
   UNICO_M->solverInfoPtr = (&UNICO_M->solverInfo);
-  UNICO_M->Timing.stepSize = (0.008);
-  rtsiSetFixedStepSize(&UNICO_M->solverInfo, 0.008);
+  UNICO_M->Timing.stepSize = (0.002);
+  rtsiSetFixedStepSize(&UNICO_M->solverInfo, 0.002);
   rtsiSetSolverMode(&UNICO_M->solverInfo, SOLVER_MODE_SINGLETASKING);
 
   /* block I/O */
