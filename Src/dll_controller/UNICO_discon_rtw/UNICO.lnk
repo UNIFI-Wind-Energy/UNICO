@@ -1,7 +1,0 @@
-UNICO.obj
-rt_logging.obj
-rtGetInf.obj
-rtGetNaN.obj
-rt_nonfinite.obj
-discon_main.obj
-rt_sim.obj
