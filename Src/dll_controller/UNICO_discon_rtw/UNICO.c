@@ -7,9 +7,9 @@
  *
  * Code generation for model "UNICO".
  *
- * Model version              : 10.58
+ * Model version              : 10.57
  * Simulink Coder version : 9.9 (R2023a) 19-Nov-2022
- * C source code generated on : Tue Jan  9 12:19:13 2024
+ * C source code generated on : Tue Jan 23 14:51:54 2024
  *
  * Target selection: discon.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -1934,16 +1934,16 @@ static void UNICO_output(void)
     } else if (fabs(UNICO_U.dRtGenSpd - rtb_Switch1_h) < fabs(UNICO_U.dMinOMSpd
                 - rtb_Switch1_h)) {
       /* '<S26>:1:31' */
-      /* '<S26>:1:32' */
+      /* '<S26>:1:33' */
       rtb_GenSpeedRef = UNICO_U.dRtGenSpd;
     } else {
-      /* '<S26>:1:34' */
+      /* '<S26>:1:36' */
       rtb_GenSpeedRef = UNICO_U.dMinOMSpd;
     }
   } else if (UNICO_U.dRgn3Mode == 0.0) {
-    /* '<S26>:1:44' */
-    /* '<S26>:1:46' */
+    /* '<S26>:1:45' */
     /* '<S26>:1:47' */
+    /* '<S26>:1:48' */
     count = UNICO_U.dRtPwr * UNICO_U.dGenEff / (0.5 * UNICO_U.dRhoAir *
       3.1415926535897931 * (UNICO_U.dRotorRadius * UNICO_U.dRotorRadius) *
       rt_powd_snf(rtb_Switch_p, 3.0));
@@ -1955,7 +1955,7 @@ static void UNICO_output(void)
       count = UNICO_U.dCpMax;
     }
 
-    /* '<S26>:1:48' */
+    /* '<S26>:1:49' */
     mid_i = UNICO_DW.CpInvSgn_DIMS1[0];
     loop_ub = UNICO_DW.CpInvSgn_DIMS1[0];
     if (loop_ub - 1 >= 0) {
@@ -2041,15 +2041,15 @@ static void UNICO_output(void)
       }
     } while (exitg2 == 0);
 
-    /* '<S26>:1:49' */
+    /* '<S26>:1:50' */
     rtb_GenSpeedRef = count_line * rtb_Switch_p / UNICO_U.dRotorRadius;
   } else if (rtb_Switch_p < UNICO_U.dVLin) {
-    /* '<S26>:1:53' */
     /* '<S26>:1:54' */
+    /* '<S26>:1:55' */
     rtb_GenSpeedRef = UNICO_U.dRtGenSpd;
   } else {
-    /* '<S26>:1:56' */
     /* '<S26>:1:57' */
+    /* '<S26>:1:58' */
     count = (rtb_Switch_p - UNICO_U.dVLin) * UNICO_U.dMRgn3Lin +
       UNICO_U.dRtGenSpd;
     if ((count >= UNICO_U.dMinOMSpd) || rtIsNaN(UNICO_U.dMinOMSpd)) {
@@ -2065,7 +2065,7 @@ static void UNICO_output(void)
    *  Gain: '<S12>/Gain1'
    *  Inport: '<Root>/dRefSpeedFLPF'
    */
-  /* '<S26>:1:63' */
+  /* '<S26>:1:64' */
   rtb_tau = 6.2831853071795862 * UNICO_U.dRefSpeedFLPF * 0.001;
 
   /* Product: '<S28>/Product2' incorporates:
@@ -2363,24 +2363,24 @@ static void UNICO_output(void)
             UNICO_U.dMinOMSpdSwitch) * (rtb_Switch1_h - UNICO_U.dMinOMSpdSwitch)
             + xtmp;
         } else if (rtb_y < Tgmin) {
-          /* '<S29>:1:48' */
-          /* '<S29>:1:52' */
+          /* '<S29>:1:47' */
+          /* '<S29>:1:51' */
           rtb_GenTq = rtb_y;
         }
       }
     } else if ((rtb_Switch1_h < UNICO_U.dRtGenSpd) && (rtb_Switch_p <=
                 UNICO_U.dRtWSpd)) {
-      /* '<S29>:1:71' */
-      /* '<S29>:1:73' */
+      /* '<S29>:1:56' */
+      /* '<S29>:1:58' */
       rtb_GenTq = (rtb_y - count_line) / (UNICO_U.dRtGenSpd -
         UNICO_U.dOMSpdSwitch) * (rtb_Switch1_h - UNICO_U.dOMSpdSwitch) +
         count_line;
     } else {
-      /* '<S29>:1:76' */
+      /* '<S29>:1:61' */
       rtb_GenTq = rtb_y;
     }
   } else {
-    /* '<S29>:1:80' */
+    /* '<S29>:1:65' */
     rtb_GenTq = rtb_y;
   }
 
@@ -2628,16 +2628,6 @@ static void UNICO_output(void)
       /* '<S5>:1:47' */
       UNICO_fileManager_l(count, &filestar, &autoflush);
       if (!(filestar == NULL)) {
-        fprintf(filestar, "Switch between Rgn1.5 and 2 [rad/s]:        %f \n",
-                UNICO_U.dMinOMSpdSwitch);
-        if (autoflush) {
-          fflush(filestar);
-        }
-      }
-
-      /* '<S5>:1:48' */
-      UNICO_fileManager_l(count, &filestar, &autoflush);
-      if (!(filestar == NULL)) {
         fprintf(filestar, "Region 2 control [-]:                      %f \n",
                 UNICO_U.dRgn2Mode);
         if (autoflush) {
@@ -2645,7 +2635,7 @@ static void UNICO_output(void)
         }
       }
 
-      /* '<S5>:1:49' */
+      /* '<S5>:1:48' */
       UNICO_fileManager_l(count, &filestar, &autoflush);
       if (!(filestar == NULL)) {
         fprintf(filestar, "Switch for user defined K [-]:              %f \n",
@@ -2655,7 +2645,7 @@ static void UNICO_output(void)
         }
       }
 
-      /* '<S5>:1:50' */
+      /* '<S5>:1:49' */
       UNICO_fileManager_l(count, &filestar, &autoflush);
       if (!(filestar == NULL)) {
         fprintf(filestar, "User defined K value [Nms^2/rad^2]:         %f \n",
@@ -2665,11 +2655,21 @@ static void UNICO_output(void)
         }
       }
 
-      /* '<S5>:1:51' */
+      /* '<S5>:1:50' */
       UNICO_fileManager_l(count, &filestar, &autoflush);
       if (!(filestar == NULL)) {
         fprintf(filestar, "Switch between Rgn2 and 2.5 [rad/s]:        %f \n",
                 UNICO_U.dOMSpdSwitch);
+        if (autoflush) {
+          fflush(filestar);
+        }
+      }
+
+      /* '<S5>:1:51' */
+      UNICO_fileManager_l(count, &filestar, &autoflush);
+      if (!(filestar == NULL)) {
+        fprintf(filestar, "Switch between Rgn1.5 and 2 [rad/s]:        %f \n",
+                UNICO_U.dMinOMSpdSwitch);
         if (autoflush) {
           fflush(filestar);
         }
