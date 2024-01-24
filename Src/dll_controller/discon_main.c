@@ -274,7 +274,7 @@ int initiateController(char *errorMsg) {
 #if !defined(MULTITASKING)  /* SINGLETASKING */
 int calcOutputController(float rUserVar1, float rUserVar2, float rUserVar3, float rUserVar4, float rUserVar5,float rUserVar6, float rUserVar7, float rUserVar8, float rUserVar9, float rUserVar10,
 						 float rUserVar11,float rUserVar12,float rUserVar13,float rUserVar14,float rUserVar15,float rUserVar16,float rUserVar17,float rUserVar18,float rUserVar19,float rUserVar20, float rUserVar21, 
-        float rUserVar22, float rUserVar23, float rUserVar24, float rUserVar25, float rUserVar26, float rUserVar27, float rUserVar28, float rUserVar29, float rUserVar30, float rTime, float rInit, float rSample, float rGeneratorSpeed, float rWindSpeed,  float rRatedSpeed,
+        float rUserVar22, float rUserVar23, float rUserVar24, float rUserVar25, float rUserVar26, float rUserVar27, float rUserVar28, float rUserVar29, float rUserVar30, float rUserVar31, float rUserVar32, float rUserVar33, float rTime, float rInit, float rSample, float rGeneratorSpeed, float rWindSpeed, float rRatedSpeed,
         float rBelowRatedPitch, float rForeAftTower, float rSideTower,
         float rRotorAzimuth, float rOP1RootMoment, float rOP2RootMoment,
         float rOP3RootMoment,float rIP1RootMoment, float rIP2RootMoment,
@@ -321,21 +321,24 @@ int calcOutputController(float rUserVar1, float rUserVar2, float rUserVar3, floa
 	SIG_MODEL(U, dKSwitch) = rUserVar13;
 	SIG_MODEL(U, dRgn2K) = rUserVar14;
 	SIG_MODEL(U, dOMSpdSwitch) = rUserVar15;
-	SIG_MODEL(U, dTSRopt) = rUserVar16;
-	SIG_MODEL(U, dCpMax) = rUserVar17;
-	SIG_MODEL(U, dRgn3Mode) = rUserVar18;
-	SIG_MODEL(U, dMRgn3Lin) = rUserVar19;
-	SIG_MODEL(U, dVLin) = rUserVar20;
-    SIG_MODEL(U, dKp) = rUserVar21;
-    SIG_MODEL(U, dKi) = rUserVar22;
-    SIG_MODEL(U, dWindSpeedFSw) = rUserVar23;
-    SIG_MODEL(U, dWindSpeedFLPF) = rUserVar24;
-    SIG_MODEL(U, dGenSpeedFSw) = rUserVar25;
-    SIG_MODEL(U, dGenSpeedFLPF) = rUserVar26;
-    SIG_MODEL(U, dRefSpeedFSw) = rUserVar27;
-    SIG_MODEL(U, dRefSpeedFLPF) = rUserVar28;
-    SIG_MODEL(U, dRhoAir) = rUserVar29;
-    SIG_MODEL(U, dFPitch) = rUserVar30;
+    SIG_MODEL(U, dMinOMSpdSwitch) = rUserVar16;
+	SIG_MODEL(U, dTSRopt) = rUserVar17;
+	SIG_MODEL(U, dCpMax) = rUserVar18;
+	SIG_MODEL(U, dRgn3Mode) = rUserVar19;
+	SIG_MODEL(U, dMRgn3Lin) = rUserVar20;
+	SIG_MODEL(U, dVLin) = rUserVar21;
+    SIG_MODEL(U, dKpAr) = rUserVar22;
+    SIG_MODEL(U, dKiAr) = rUserVar23;
+    SIG_MODEL(U, dKpBr) = rUserVar24;
+    SIG_MODEL(U, dKiBr) = rUserVar25;
+    SIG_MODEL(U, dWindSpeedFSw) = rUserVar26;
+    SIG_MODEL(U, dWindSpeedFLPF) = rUserVar27;
+    SIG_MODEL(U, dGenSpeedFSw) = rUserVar28;
+    SIG_MODEL(U, dGenSpeedFLPF) = rUserVar29;
+    SIG_MODEL(U, dRefSpeedFSw) = rUserVar30;
+    SIG_MODEL(U, dRefSpeedFLPF) = rUserVar31;
+    SIG_MODEL(U, dRhoAir) = rUserVar32;
+    SIG_MODEL(U, dFPitch) = rUserVar33;
 
     strcpy(SIG_MODEL(U, dTablePath), path2table);
     // strcpy(SIG_MODEL(U, dTablePath), path2table);
@@ -433,13 +436,14 @@ int calcOutputController(float rUserVar1, float rUserVar2, float rUserVar3, floa
 
 int calcOutputController(float rUserVar1, float rUserVar2, float rUserVar3, float rUserVar4, float rUserVar5,float rUserVar6, float rUserVar7, float rUserVar8, float rUserVar9, float rUserVar10,
 						 float rUserVar11,float rUserVar12,float rUserVar13,float rUserVar14,float rUserVar15,float rUserVar16,float rUserVar17,float rUserVar18,float rUserVar19,float rUserVar20, 
-        float rUserVar21, float rUserVar22, float rUserVar23, float rUserVar24, float rUserVar25, float rUserVar26, float rUserVar27, float rUserVar28, float rUserVar29, float rUserVar30, float rTime,
-		float rInit, float rSample,float rGeneratorSpeed, float rWindSpeed, float rRatedSpeed,
+        float rUserVar21, float rUserVar22, float rUserVar23, float rUserVar24, float rUserVar25, float rUserVar26, float rUserVar27, float rUserVar28, float rUserVar29, float rUserVar30, float rUserVar31,
+        float rUserVar32, float rUserVar33, float rTime,
+		float rUserVar32, float rInit, float rSample,float rGeneratorSpeed, float rWindSpeed, float rRatedSpeed,
         float rBelowRatedPitch, float rForeAftTower, float rSideTower,
         float rRotorAzimuth, float rOP1RootMoment, float rOP2RootMoment,
         float rOP3RootMoment,float rIP1RootMoment, float rIP2RootMoment,
         float rIP3RootMoment, float rMeasuredPitch, float rMeasuredTorque, float rShaftTorque,
-        float rModeGain, float rYawError, float rYawBearingRate, float rElectricalPower, float *rTorqueDemand, float *rBlade1Pitch, 
+        float rModeGain,  float rYawError, float rYawBearingRate, float rElectricalPower, float *rTorqueDemand, float *rBlade1Pitch,
         float *rBlade2Pitch, float *rBlade3Pitch, float *rPitchDemand, char *errorMsg, float* rYawRate,
         float* rLog1, float* rLog2,  float* rLog3,  float* rLog4,  float* rLog5,  float* rLog6,  float* rLog7,  float* rLog8,  float* rLog9,  float* rLog10,
 		float* rLog11, float* rLog12,  float* rLog13,  float* rLog14,  float* rLog15,  float* rLog16,  float* rLog17,  float* rLog18,  float* rLog19,  float* rLog20, char* path2table) {
@@ -483,21 +487,24 @@ int calcOutputController(float rUserVar1, float rUserVar2, float rUserVar3, floa
     SIG_MODEL(U, dKSwitch) = rUserVar13;
     SIG_MODEL(U, dRgn2K) = rUserVar14;
     SIG_MODEL(U, dOMSpdSwitch) = rUserVar15;
-    SIG_MODEL(U, dTSRopt) = rUserVar16;
-    SIG_MODEL(U, dCpMax) = rUserVar17;
-    SIG_MODEL(U, dRgn3Mode) = rUserVar18;
-    SIG_MODEL(U, dMRgn3Lin) = rUserVar19;
-    SIG_MODEL(U, dVLin) = rUserVar20;
-    SIG_MODEL(U, dKp) = rUserVar21;
-    SIG_MODEL(U, dKi) = rUserVar22;
-    SIG_MODEL(U, dWindSpeedFSw) = rUserVar23;
-    SIG_MODEL(U, dWindSpeedFLPF) = rUserVar24;
-    SIG_MODEL(U, dGenSpeedFSw) = rUserVar25;
-    SIG_MODEL(U, dGenSpeedFLPF) = rUserVar26;
-    SIG_MODEL(U, dRefSpeedFSw) = rUserVar27;
-    SIG_MODEL(U, dRefSpeedFLPF) = rUserVar28;
-    SIG_MODEL(U, dRhoAir) = rUserVar29;
-    SIG_MODEL(U, dFPitch) = rUserVar30;
+    SIG_MODEL(U, dMinOMSpdSwitch) = rUserVar16;
+    SIG_MODEL(U, dTSRopt) = rUserVar17;
+    SIG_MODEL(U, dCpMax) = rUserVar18;
+    SIG_MODEL(U, dRgn3Mode) = rUserVar19;
+    SIG_MODEL(U, dMRgn3Lin) = rUserVar20;
+    SIG_MODEL(U, dVLin) = rUserVar21;
+    SIG_MODEL(U, dKpAr) = rUserVar22;
+    SIG_MODEL(U, dKiAr) = rUserVar23;
+    SIG_MODEL(U, dKpBr) = rUserVar24;
+    SIG_MODEL(U, dKiBr) = rUserVar25;
+    SIG_MODEL(U, dWindSpeedFSw) = rUserVar26;
+    SIG_MODEL(U, dWindSpeedFLPF) = rUserVar27;
+    SIG_MODEL(U, dGenSpeedFSw) = rUserVar28;
+    SIG_MODEL(U, dGenSpeedFLPF) = rUserVar29;
+    SIG_MODEL(U, dRefSpeedFSw) = rUserVar30;
+    SIG_MODEL(U, dRefSpeedFLPF) = rUserVar31;
+    SIG_MODEL(U, dRhoAir) = rUserVar32;
+    SIG_MODEL(U, dFPitch) = rUserVar33;
 
 
 
@@ -718,65 +725,71 @@ float* SetParams(float *avrSwap)
 
             fgets(mystring, 200, pFile); // HEADER
             fgets(mystring, 200, pFile);
-            avrSwap[119] = atof(mystring);    /* Echo OK*/
+            avrSwap[130] = atof(mystring);    /* Echo OK*/
             fgets(mystring, 200, pFile);
-            avrSwap[120] = atof(mystring);    /* Blade Radius OK*/
+            avrSwap[131] = atof(mystring);    /* Blade Radius OK*/
             fgets(mystring, 200, pFile);
-            avrSwap[121] = atof(mystring);   /*RtWSpd OK*/
+            avrSwap[132] = atof(mystring);   /*RtWSpd OK*/
             fgets(mystring, 200, pFile);
-            avrSwap[122] = atof(mystring);   /* RtTq*/
+            avrSwap[133] = atof(mystring);   /* RtTq*/
             fgets(mystring, 200, pFile);
-            avrSwap[123] = atof(mystring);   /* RtPwr*/
+            avrSwap[134] = atof(mystring);   /* RtPwr*/
             fgets(mystring, 200, pFile);
-            avrSwap[124] = atof(mystring);    /*RtGenSpd */
+            avrSwap[135] = atof(mystring);    /*RtGenSpd */
             fgets(mystring, 200, pFile);
-            avrSwap[125] = atof(mystring);    /*GenEff OK*/
+            avrSwap[136] = atof(mystring);    /*GenEff OK*/
             fgets(mystring, 200, pFile);
-            avrSwap[126] = atof(mystring);    /* MinTq OK*/
+            avrSwap[137] = atof(mystring);    /* MinTq OK*/
             fgets(mystring, 200, pFile);
-            avrSwap[127] = atof(mystring);    /*MaxTq OK*/
+            avrSwap[138] = atof(mystring);    /*MaxTq OK*/
             fgets(mystring, 200, pFile);
-            avrSwap[128] = atof(mystring);    /*MaxRat OK*/
+            avrSwap[139] = atof(mystring);    /*MaxRat OK*/
             fgets(mystring, 200, pFile);
-            avrSwap[129] = atof(mystring);     /*MinOMSpd */
+            avrSwap[140] = atof(mystring);     /*MinOMSpd */
             fgets(mystring, 200, pFile);
-            avrSwap[130] = atof(mystring);     /* Rgn2_Mode OK*/
+            avrSwap[141] = atof(mystring);     /* Rgn2_Mode OK*/
             fgets(mystring, 200, pFile);
-            avrSwap[131] = atof(mystring);     /* KSwitch OK*/
+            avrSwap[142] = atof(mystring);     /* KSwitch OK*/
             fgets(mystring, 200, pFile);
-            avrSwap[132] = atof(mystring);      /* Rg2K OK*/
+            avrSwap[143] = atof(mystring);      /* Rg2K OK*/
             fgets(mystring, 200, pFile);
-            avrSwap[133] = atof(mystring);      /* OMSpdSwitch */
+            avrSwap[144] = atof(mystring);      /* OMSpdSwitch */
             fgets(mystring, 200, pFile);
-            avrSwap[134] = atof(mystring);      /* TSROpt OK*/
+            avrSwap[145] = atof(mystring);      /* MinOMSpdSwitch */
             fgets(mystring, 200, pFile);
-            avrSwap[135] = atof(mystring);      /* Cpmax OK*/
+            avrSwap[146] = atof(mystring);      /* TSROpt OK*/
             fgets(mystring, 200, pFile);
-            avrSwap[136] = atof(mystring);      /* Rgn3_Mode OK*/
+            avrSwap[147] = atof(mystring);      /* Cpmax OK*/
             fgets(mystring, 200, pFile);
-            avrSwap[137] = atof(mystring);     /* Rg3Lin  OK*/
+            avrSwap[148] = atof(mystring);      /* Rgn3_Mode OK*/
             fgets(mystring, 200, pFile);
-            avrSwap[138] = atof(mystring);      /*Vlin OK*/
+            avrSwap[149] = atof(mystring);     /* Rg3Lin  OK*/
             fgets(mystring, 200, pFile);
-            avrSwap[139] = atof(mystring);      /*KP OK*/
+            avrSwap[150] = atof(mystring);      /*Vlin OK*/
             fgets(mystring, 200, pFile);
-            avrSwap[140] = atof(mystring);      /*KI OK*/
+            avrSwap[151] = atof(mystring);      /*KPAr OK*/
             fgets(mystring, 200, pFile);
-            avrSwap[141] = atof(mystring);      /*Wind_Speed_F_Sw OK*/
+            avrSwap[152] = atof(mystring);      /*KIAr OK*/
             fgets(mystring, 200, pFile);
-            avrSwap[142] = atof(mystring);      /*Wind_Speed_F_LPF OK*/
+            avrSwap[153] = atof(mystring);      /*KPBr OK*/
             fgets(mystring, 200, pFile);
-            avrSwap[143] = atof(mystring);      /*Gen_Speed_F_Sw OK*/
+            avrSwap[154] = atof(mystring);      /*KIBr OK*/
             fgets(mystring, 200, pFile);
-            avrSwap[144] = atof(mystring);      /*Gen_Speed_F_LPF OK*/
+            avrSwap[155] = atof(mystring);      /*Wind_Speed_F_Sw OK*/
             fgets(mystring, 200, pFile);
-            avrSwap[145] = atof(mystring);      /*Ref_Speed_F_Sw OK*/
+            avrSwap[156] = atof(mystring);      /*Wind_Speed_F_LPF OK*/
             fgets(mystring, 200, pFile);
-            avrSwap[146] = atof(mystring);      /*Ref_Speed_F_LPF OK*/
+            avrSwap[157] = atof(mystring);      /*Gen_Speed_F_Sw OK*/
             fgets(mystring, 200, pFile);
-            avrSwap[147] = atof(mystring);      /*RhoAir OK*/
+            avrSwap[158] = atof(mystring);      /*Gen_Speed_F_LPF OK*/
             fgets(mystring, 200, pFile);
-            avrSwap[148] = atof(mystring);      /*fixed_pitch OK*/
+            avrSwap[159] = atof(mystring);      /*Ref_Speed_F_Sw OK*/
+            fgets(mystring, 200, pFile);
+            avrSwap[160] = atof(mystring);      /*Ref_Speed_F_LPF OK*/
+            fgets(mystring, 200, pFile);
+            avrSwap[161] = atof(mystring);      /*RhoAir OK*/
+            fgets(mystring, 200, pFile);
+            avrSwap[162] = atof(mystring);      /*fixed_pitch OK*/
 
 			fclose (pFile);
 			}
@@ -803,7 +816,7 @@ void __declspec(dllexport) __cdecl DISCON(float *avrSwap, int *aviFail, char *ac
 			rForeAftTower, rSideTower, rMeasuredPitch, rMeasuredTorque, rShaftTorque,
 			rModeGain, rInit, rUserVar1, rUserVar2, rUserVar3, rUserVar4, rUserVar5, rUserVar6, rUserVar7, rUserVar8, rUserVar9, rUserVar10,
 			rUserVar11,rUserVar12,rUserVar13,rUserVar14,rUserVar15,rUserVar16,rUserVar17,rUserVar18,rUserVar19,rUserVar20,rUserVar21, rUserVar22, rUserVar23, rUserVar24, 
-            rUserVar25, rUserVar26, rUserVar27, rUserVar28, rUserVar29, rUserVar30,
+            rUserVar25, rUserVar26, rUserVar27, rUserVar28, rUserVar29, rUserVar30, rUserVar31, rUserVar32, rUserVar33,
             rYawError, rYawBearingRate, rElectricalPower;
 	static float rTorqueDemand, rPitchDemand, rBlade1Pitch, rBlade2Pitch, 
 			rBlade3Pitch, rYawRate, rLog1,rLog2,rLog3,rLog4,rLog5,rLog6,rLog7,rLog8,rLog9,rLog10,rLog11,rLog12,rLog13,rLog14,rLog15,rLog16,rLog17,rLog18,rLog19,rLog20;
@@ -829,36 +842,39 @@ void __declspec(dllexport) __cdecl DISCON(float *avrSwap, int *aviFail, char *ac
 	/* Load variables from Bladed (See Appendix A) */
 	iStatus          = NINT(avrSwap[0]);
 	rInit			= avrSwap[0];
-	rUserVar1		= avrSwap[119];   /* dEcho */
-	rUserVar2		= avrSwap[120];   /* dRotorRadius */
-	rUserVar3		= avrSwap[121];   /* dRtWsp */
-	rUserVar4		= avrSwap[122];   /* dRtTq */
-	rUserVar5		= avrSwap[123];   /* dRtPwr */
-	rUserVar6		= avrSwap[124];   /* dRtGenSpd */
-	rUserVar7		= avrSwap[125];   /* dGenEff */
-	rUserVar8		= avrSwap[126];   /* dMinTq */
-	rUserVar9		= avrSwap[127];   /* dMaxTq */
-	rUserVar10		= avrSwap[128];   /* dMaxRat */
-	rUserVar11		= avrSwap[129];   /* dMinOMSpd */
-	rUserVar12		= avrSwap[130];   /* dRgn2Mode */
-	rUserVar13		= avrSwap[131];   /* dKSwitch */
-	rUserVar14		= avrSwap[132];   /* dRgn2K */
-	rUserVar15		= avrSwap[133];   /* dOMSpdSwitch */
-	rUserVar16		= avrSwap[134];   /* dTSRopt */
-	rUserVar17		= avrSwap[135];   /* dCpMax */
-	rUserVar18		= avrSwap[136];   /* dRgn3Mode */
-	rUserVar19		= avrSwap[137];   /* dMRgn3Lin */
-	rUserVar20		= avrSwap[138];   /* dVLin */
-    rUserVar21      = avrSwap[139];   /* dKp */
-    rUserVar22      = avrSwap[140];   /* dKi */
-    rUserVar23      = avrSwap[141];   /* dWindSpeedFSw */
-    rUserVar24      = avrSwap[142];   /*dWindSpeedFLPF */
-    rUserVar25      = avrSwap[143];   /* dGenSpeedFSw */
-    rUserVar26      = avrSwap[144];   /*dGenSpeedFLPF */
-    rUserVar27      = avrSwap[145];   // dRefSpeedFSw
-    rUserVar28      = avrSwap[146];   /* RefSpeedFLPF */
-    rUserVar29      = avrSwap[147];   // dRhoAir
-    rUserVar30      = avrSwap[148];  // dFPitch
+	rUserVar1		= avrSwap[130];   /* dEcho */
+	rUserVar2		= avrSwap[131];   /* dRotorRadius */
+	rUserVar3		= avrSwap[132];   /* dRtWsp */
+	rUserVar4		= avrSwap[133];   /* dRtTq */
+	rUserVar5		= avrSwap[134];   /* dRtPwr */
+	rUserVar6		= avrSwap[135];   /* dRtGenSpd */
+	rUserVar7		= avrSwap[136];   /* dGenEff */
+	rUserVar8		= avrSwap[137];   /* dMinTq */
+	rUserVar9		= avrSwap[138];   /* dMaxTq */
+	rUserVar10		= avrSwap[139];   /* dMaxRat */
+	rUserVar11		= avrSwap[140];   /* dMinOMSpd */
+	rUserVar12		= avrSwap[141];   /* dRgn2Mode */
+	rUserVar13		= avrSwap[142];   /* dKSwitch */
+	rUserVar14		= avrSwap[143];   /* dRgn2K */
+	rUserVar15		= avrSwap[144];   /* dOMSpdSwitch */
+    rUserVar16      = avrSwap[145];   /* dMinOMSpdSwitch */
+	rUserVar17		= avrSwap[146];   /* dTSRopt */
+	rUserVar18		= avrSwap[147];   /* dCpMax */
+	rUserVar19		= avrSwap[148];   /* dRgn3Mode */
+	rUserVar20		= avrSwap[149];   /* dMRgn3Lin */
+	rUserVar21		= avrSwap[150];   /* dVLin */
+    rUserVar22      = avrSwap[151];   /* dKpAr */
+    rUserVar23      = avrSwap[152];   /* dKiAr */
+    rUserVar24      = avrSwap[153];   /* dKpBr */
+    rUserVar25      = avrSwap[154];   /*dKiBr */
+    rUserVar26      = avrSwap[155];   /* dWindSpeedFSw */
+    rUserVar27      = avrSwap[156];   /*dWindSpeedFLPF */
+    rUserVar28      = avrSwap[157];   // dGenSpeedFSw
+    rUserVar29      = avrSwap[158];   /* dGenSpeedFLPF */
+    rUserVar30      = avrSwap[159];   // dRefSpeedFSw
+    rUserVar31      = avrSwap[160];  // RefSpeedFLPF
+    rUserVar32      = avrSwap[161];  // dRhoAir
+    rUserVar33      = avrSwap[162];  // dFPitch
 
 
 
@@ -882,7 +898,7 @@ void __declspec(dllexport) __cdecl DISCON(float *avrSwap, int *aviFail, char *ac
 	rSideTower       = avrSwap[53];
 	rRotorAzimuth    = avrSwap[59];
 	rYawError		 = avrSwap[23];
-	rYawBearingRate  = avrSwap[162];
+	rYawBearingRate  = avrSwap[180];
 	rElectricalPower = avrSwap[14];
 
 
@@ -907,13 +923,16 @@ void __declspec(dllexport) __cdecl DISCON(float *avrSwap, int *aviFail, char *ac
             fgets(mystring, 200, pFile);  /*VS_MaxTq OK*/
             fgets(mystring, 200, pFile);  /*VS_MinTq OK*/
             fgets(mystring, 200, pFile);  /*VS_MinOMSpd OK*/
+            fgets(mystring, 200, pFile);  /* dMinOMSpdSwitch */
             fgets(mystring, 200, pFile);  /*VS_Rgn2K */
             fgets(mystring, 200, pFile);  /*VS_RtPwr OK*/
             fgets(mystring, 200, pFile);   /*VS_RtTq OK*/
             fgets(mystring, 200, pFile);   /*VS_RefSpd	 OK*/
             fgets(mystring, 200, pFile);   /*VS_n OK */
-            fgets(mystring, 200, pFile);   /*VS_KP OK*/
-            fgets(mystring, 200, pFile);   /* VS_KI OK*/
+            fgets(mystring, 200, pFile);   /*VS_KPAr OK*/
+            fgets(mystring, 200, pFile);   /* VS_KIAr OK*/
+            fgets(mystring, 200, pFile);   /*VS_KPbr OK*/
+            fgets(mystring, 200, pFile);   /* VS_KIbr OK*/
             fgets(mystring, 200, pFile);   /*VS_TSRopt OK*/
             fgets(mystring, 200, pFile);   /*VS_RtWSpd  OK*/
             fgets(mystring, 200, pFile);   /*airDens OK*/
@@ -957,13 +976,13 @@ void __declspec(dllexport) __cdecl DISCON(float *avrSwap, int *aviFail, char *ac
         
                 aviFail[0] = calcOutputController(rUserVar1, rUserVar2, rUserVar3, rUserVar4, rUserVar5,rUserVar6, rUserVar7, rUserVar8, rUserVar9, rUserVar10,
 						rUserVar11,rUserVar12,rUserVar13,rUserVar14,rUserVar15,rUserVar16,rUserVar17,rUserVar18,rUserVar19,rUserVar20, rUserVar21, rUserVar22, rUserVar23, rUserVar24,
-                        rUserVar25, rUserVar26, rUserVar27, rUserVar28, rUserVar29, rUserVar30,
+                        rUserVar25, rUserVar26, rUserVar27, rUserVar28, rUserVar29, rUserVar30, rUserVar31, rUserVar32, rUserVar33,
                         rTime, rInit, rSample, rGeneratorSpeed, rWindSpeed, rRatedSpeed,
                         rBelowRatedPitch, rForeAftTower, rSideTower,
                         rRotorAzimuth, rOP1RootMoment, rOP2RootMoment,
                         rOP3RootMoment, rIP1RootMoment, rIP2RootMoment,
                         rIP3RootMoment, rMeasuredPitch, rMeasuredTorque, rShaftTorque,
-                        rModeGain, rYawError, rYawBearingRate, rElectricalPower, &rTorqueDemand, &rBlade1Pitch, 
+                        rModeGain, rYawError, rYawBearingRate, rElectricalPower, &rTorqueDemand, &rBlade1Pitch,
                         &rBlade2Pitch, &rBlade3Pitch, &rPitchDemand, &errorMsg, &rYawRate,
                         &rLog1,&rLog2,&rLog3,&rLog4,&rLog5,&rLog6,&rLog7,&rLog8,&rLog9,&rLog10,&rLog11,&rLog12,&rLog13,&rLog14,&rLog15,&rLog16,&rLog17,&rLog18,&rLog19,&rLog20, path2table);
         
@@ -976,7 +995,7 @@ void __declspec(dllexport) __cdecl DISCON(float *avrSwap, int *aviFail, char *ac
         /* Main calculation */
         aviFail[0] = calcOutputController(rUserVar1, rUserVar2, rUserVar3, rUserVar4, rUserVar5,rUserVar6, rUserVar7, rUserVar8, rUserVar9, rUserVar10,
 						rUserVar11,rUserVar12,rUserVar13,rUserVar14,rUserVar15,rUserVar16,rUserVar17,rUserVar18,rUserVar19,rUserVar20, rUserVar21, rUserVar22, rUserVar23, rUserVar24,
-                        rUserVar25, rUserVar26, rUserVar27, rUserVar28, rUserVar29, rUserVar30, rTime, rInit, rSample, rGeneratorSpeed, rWindSpeed, rRatedSpeed,
+                        rUserVar25, rUserVar26, rUserVar27, rUserVar28, rUserVar29, rUserVar30, rUserVar31, rUserVar32, rUserVar33, rTime, rInit, rSample, rGeneratorSpeed, rWindSpeed, rRatedSpeed,
                         rBelowRatedPitch, rForeAftTower, rSideTower,
                         rRotorAzimuth, rOP1RootMoment, rOP2RootMoment,
                         rOP3RootMoment, rIP1RootMoment, rIP2RootMoment,
@@ -991,7 +1010,7 @@ void __declspec(dllexport) __cdecl DISCON(float *avrSwap, int *aviFail, char *ac
         /* Main calculation */
         aviFail[0] = calcOutputController(rUserVar1, rUserVar2, rUserVar3, rUserVar4, rUserVar5,rUserVar6, rUserVar7, rUserVar8, rUserVar9, rUserVar10,
 						rUserVar11,rUserVar12,rUserVar13,rUserVar14,rUserVar15,rUserVar16,rUserVar17,rUserVar18,rUserVar19,rUserVar20, rUserVar21, rUserVar22, rUserVar23, rUserVar24, rUserVar25, rUserVar26,
-                        rUserVar27, rUserVar28, rUserVar29, rUserVar30, rTime, rInit, rSample, rGeneratorSpeed, rWindSpeed, rRatedSpeed,
+                        rUserVar27, rUserVar28, rUserVar29, rUserVar30, rUserVar31, rUserVar32, rUserVar33, rTime, rInit, rSample, rGeneratorSpeed, rWindSpeed, rRatedSpeed,
                         rBelowRatedPitch, rForeAftTower, rSideTower,
                         rRotorAzimuth, rOP1RootMoment, rOP2RootMoment,
                         rOP3RootMoment, rIP1RootMoment, rIP2RootMoment,
