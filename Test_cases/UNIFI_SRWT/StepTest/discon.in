@@ -4,30 +4,32 @@
 12                  ! dRtWSpd         - Wind speed at rated power, [m/s].
 15000.00000000      ! dRtTq			- Rated torque, [Nm].
 15000.00000000      ! dRtPwr			- Wind turbine rated power [W]
-5.7800000000      	! dRtGenSpeed	    - Rated generator speed [rad/s]
+5.800000000      	! dRtGenSpeed	    - Rated generator speed [rad/s]
 0.9400000000000     ! dGenEff			- Generator efficiency [should match the efficiency defined in the generator properties!], [%]
 0.000000000000      ! dMinTq			- Minimum generator (HSS side), [Nm].
 17250.00000000      ! dMaxTq			- Maximum generator torque (HSS side), [Nm].
 5000.000000000      ! dMaxRat			- Maximum torque rate (in absolute value), [Nm/s].
 2.617990000000      ! dMinOMSpd		- Minimum rotational speed [rad/s]
-1                   ! dRgn2Mode         - Region 2 control mode {0: optimum tsr tracking; 1: kw^2 torque law}
+0                   ! dRgn2Mode         - Region 2 control mode {0: optimum tsr tracking; 1: kw^2 torque law}
 0			        ! dKSwitch		- Switch for user imposed K {0: UNICO calculates K value from CpMAX and TSRopt; 1: user-defined K value}(only for Rgn2_mode = 1), [-]
 127.7235900000      ! dRgn2K			- Generator torque for k-omega law in Region 2, [N-m/(rad/s)^2] (used only if Rgn2_Mode =1 & KSwitch = 1)
-5.652               ! dOMSpdSwitch	- Generator velocity value for beginning of region 2 1/2 [rad/s] (Only used if Rgn2_Mode = 1)
+5.600               ! dOMSpdSwitch	- Generator velocity value for beginning of region 2 1/2 [rad/s] (Only used if Rgn2_Mode = 1)
 2.880				! dMinOMSpdSwitch  - Generator velocity value for beginning of region 2 (Only used if Rgn2_Mode = 1) [rad/s]
-5.23                ! dTSRopt			- Power-maximizing  tip-speed-ratio [rad].
+5.5                ! dTSRopt			- Power-maximizing  tip-speed-ratio [rad].
 0.419297			! dCpMax			    - Max Cp value, [-]
 1                   ! dRgn3Mode         - Region 3 control mode {0: rated power tracking; 1: linear method}
--0.025              ! dMRgn3Lin         - Angular coefficient, (only used if Rgn3_mode = 1}
+-0.02              ! dMRgn3Lin         - Angular coefficient, (only used if Rgn3_mode = 1}
 12					! dVLin 			- Wind speed to start linear reduction of reference speed (used only when Rgn3_mode = 1),[m/s]
--9000.97500000      ! dKp				- Proportional gain for generator PI torque controller, [-].
--300.32500000       ! dKi				- Integral gain for generator PI torque controller, [1/rad Nm]. 
+-9485.0000000      ! dKpAr				- Proportional gain for generator PI torque controller in above rated conditions, [-].
+-12770.0000000     ! dKiAr				- Integral gain for generator PI torque controller in above rated conditions, [1/rad Nm]. 
+-3161.00000000      ! dKpBr				- Proportional gain for generator PI torque controller in below rated conditions, [-].
+-1419.32500000      ! dKiBr				- Integral gain for generator PI torque controller in below rated conditions, [1/rad Nm].
 1					! dWindSpeedFSw    - Input Wind speed lowpass filter {0: do not filter the input wind speed, 1: filter the input wind speed}, [-].
-1					! dWindSpeedFLPF   - Low pass frequency of wind speed filter (used only if WindSpeedFSw = 1), [Hz]
+4					! dWindSpeedFLPF   - Low pass frequency of wind speed filter (used only if WindSpeedFSw = 1), [Hz]
 1					! dGenSpeedFSw 	- Generator speed lowpass filter {0: do not filter the input generator speed, 1: filter the input generator speed}, [-]
-1					! dGenSpeedFLPF	- Lowpass frequency of generator speed filter (used only if GenSpeedFSw = 1), [Hz]
+4					! dGenSpeedFLPF	- Lowpass frequency of generator speed filter (used only if GenSpeedFSw = 1), [Hz]
 1				    ! dRefSpeedFSw 	- Generator speed filter switch {0: do not filter the calculated reference speed, 1: filter the calculated reference speed}, [-]
-0.3					! RefSpeedFLPF	- Generator reference speed low pass filter frequency (used only if RefSpeedFSw = 1), [Hz]
+4					! RefSpeedFLPF	- Generator reference speed low pass filter frequency (used only if RefSpeedFSw = 1), [Hz]
 1.225               ! dRhoAir			- Air density, [kg m^-3]
 -5					! dFPitch       - fixed pitch angle to extract data from TSR-CP table (used only if Rgn3_Mod = 0)
 unused              ! Path to file containing TSR-CP table (used only if Rgn3_Mod = 0)
