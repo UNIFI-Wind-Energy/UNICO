@@ -28,3 +28,9 @@ To compile the controller:
 Additional notes:
 If the compilation of the .dll yields an unexpected error check that the path 
 of the simulink file does not contain any spaces
+
+----------------------------------------------------------------------------------------------------------------------------
+
+**Credits**
+
+The Simulink compilation feature, and in particular the [discon_main.c](https://github.com/UNIFI-Wind-Energy/UNICO/blob/main/Src/dll_controller/discon_main.c), [discon.tlc](https://github.com/UNIFI-Wind-Energy/UNICO/blob/main/Src/dll_controller/discon.tlc), and [discon_vc.tmf](https://github.com/UNIFI-Wind-Energy/UNICO/blob/main/Src/dll_controller/discon_vc.tmf) files, are adapted from the work of Sebastiaan Mulders (S.P.Mulders@tudelft.nl) and the Delft Center of Systems and Control Delft University of Technology ([link](https://github.com/TUDelft-DataDrivenControl/DISCON_Simulink)), to which our thanks go. The work is distributed under the [MIT license](https://opensource.org/license/MIT). Threby, a copy of the license is included in the aforementioned files. 
