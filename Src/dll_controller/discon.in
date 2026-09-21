@@ -4,7 +4,7 @@
 #GEOMETRY DATA:
 1               ! Architecture_Selector     	- 1:Hawt  2:Vawt                		[-]
 1				! Darrieus_Selector				- 1: H-type 2: Troposkein-Type (VAWT)	[-]
-1				! Rotor_Area					- Troposkein-Type (VAWT)				[m^2]
+1				! Rotor_Area					- (used only for Troposkein-Type)		[m^2]
 3               ! dBlades_Number            	- Number of Blades,             		[-]
 100		        ! dRotorRadius              	- Blade length (Radius for HAWT)        [m]
 0             	! dBlades_Height            	- Height of the Blades (VAWT)   		[m]
